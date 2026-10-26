@@ -141,3 +141,15 @@ node scripts/create-staff.js <user_email> staff
 - **Data Persistence**: Verified via Supabase MCP tool; sample brief submission (`BDO-2671DCDA5B` for Julian Vance) is actively persisted in `public.briefs` and `public.audit_events`.
 - **SLA Clock**: Active 6-hour countdown calculated dynamically from submission timestamp.
 - **Access Isolation**: Row Level Security successfully prevents unauthorized cross-tenant data access.
+
+---
+
+## 7. Branching Strategy & Pull Request Workflow
+
+- **`main`**: Production-ready base branch containing verified, stable releases.
+- **`feature/*`**: Feature branches for introducing scoped updates, component enhancements, or bug fixes.
+- **Pull Requests**:
+  1. Create a descriptive branch from `main`: `git checkout -b feature/<feature-name>`
+  2. Implement changes, test locally (`npm run dev`), and verify the build (`npm run build`).
+  3. Push to remote and open a Pull Request against `main`.
+

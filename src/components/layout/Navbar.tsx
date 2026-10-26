@@ -55,7 +55,13 @@ export default function Navbar({ theme = 'light' }: NavbarProps) {
 
         setIsLoggedIn(true);
 
-        const staffEmails = ['skchanu007@gmail.com', 'skchan007@gmail.com'];
+        const staffEmails = [
+          'skchanu007@gmail.com',
+          'skchan007@gmail.com',
+          'srihari628@gmail.com',
+          'sriharicherukumalli1@gmail.com',
+          'sriharibaby2004@gmail.com',
+        ];
         if (user.email && staffEmails.includes(user.email.toLowerCase())) {
           setIsStaffUser(true);
           return;
@@ -83,7 +89,13 @@ export default function Navbar({ theme = 'light' }: NavbarProps) {
     } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.user) {
         setIsLoggedIn(true);
-        const staffEmails = ['skchanu007@gmail.com', 'skchan007@gmail.com'];
+        const staffEmails = [
+          'skchanu007@gmail.com',
+          'skchan007@gmail.com',
+          'srihari628@gmail.com',
+          'sriharicherukumalli1@gmail.com',
+          'sriharibaby2004@gmail.com',
+        ];
         if (session.user.email && staffEmails.includes(session.user.email.toLowerCase())) {
           setIsStaffUser(true);
         } else {
