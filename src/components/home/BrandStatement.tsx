@@ -11,7 +11,7 @@ export default function BrandStatement() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--surface)] text-[var(--brand)] text-xs font-bold uppercase tracking-wider mb-4 border border-[var(--border-light)] shadow-sm">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>The BuilDo Standard</span>
+              <span>The Awyk Standard</span>
             </div>
             
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-extrabold text-[var(--ink)] leading-[1.08] mb-6 tracking-tight">

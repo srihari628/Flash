@@ -101,7 +101,7 @@ export default function LoginPage() {
                 Workspace Access
               </span>
               <h1 className="text-2xl sm:text-3xl font-heading font-extrabold text-[var(--ink)]">
-                Sign in to BuilDo
+                Sign in to Awyk
               </h1>
               <p className="text-xs text-[var(--text-muted)] mt-1">
                 Access your project workspace, proposals, and staging previews.

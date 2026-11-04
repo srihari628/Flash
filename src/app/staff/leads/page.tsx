@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Staff Triage & Leads Portal — BuilDo',
+  title: 'Staff Triage & Leads Portal — Awyk Staff',
   description: 'Internal operational triage dashboard for evaluating incoming client briefs within the 6-hour response SLA.',
 };
 

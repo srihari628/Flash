@@ -41,18 +41,39 @@ interface BriefDraft {
   marketing_consent: boolean;
 }
 
-const STORAGE_KEY = 'buildo_brief_draft_v1';
+const STORAGE_KEY = 'awyk_brief_draft_v1';
 
 const servicesList = [
-  { slug: 'portfolio', name: 'Portfolio & Studio', typical: '~3 days' },
-  { slug: 'business-website', name: 'Business Website', typical: '~5 days' },
-  { slug: 'web-app', name: 'Full Stack Web Application', typical: '~10 days' },
-  { slug: 'ecommerce', name: 'Boutique Commerce', typical: '~7 days' },
-  { slug: 'mobile-app', name: 'Android & iOS App', typical: '~14 days' },
-  { slug: 'automation', name: 'Automation & Webhooks', typical: '~4 days' },
-  { slug: 'deployment-bugfix', name: 'Deployment & Bug Fixing', typical: '~2 days' },
-  { slug: 'custom-mvp', name: 'Other Custom MVP', typical: '~7 days' },
-  { slug: 'not_sure', name: 'I am not sure yet', typical: 'Flexible' },
+  // Website Development
+  { slug: 'static-website', name: 'Static Website (₹5,000+)', typical: '~2-3 days' },
+  { slug: 'cms-website', name: 'Dynamic / CMS Website (₹10,000+)', typical: '~3-5 days' },
+  { slug: 'custom-business-website', name: 'Custom Business Website (₹18,000+)', typical: '~5-7 days' },
+  { slug: 'premium-3d-website', name: 'Premium 3D / Animated Website (₹30,000+)', typical: '~7-10 days' },
+  { slug: 'ecommerce-website', name: 'Standard E-commerce Website (₹20,000+)', typical: '~5-7 days' },
+  
+  // Mobile Application Development
+  { slug: 'mobile-mvp', name: 'Standard MVP Mobile App (₹20,000+)', typical: '~7-10 days' },
+  { slug: 'business-app', name: 'Business App (₹30,000+)', typical: '~10-14 days' },
+  { slug: 'business-pro-app', name: 'Business Pro App (₹45,000+)', typical: '~14-21 days' },
+  
+  // AI & Automation
+  { slug: 'whatsapp-automation', name: 'Basic WhatsApp Automation (₹5,000+)', typical: '~2-3 days' },
+  { slug: 'ai-whatsapp-assistant', name: 'AI WhatsApp Assistant (₹10,000+)', typical: '~3-5 days' },
+  { slug: 'whatsapp-ecommerce', name: 'E-commerce to WhatsApp Ordering (₹12,000+)', typical: '~4-6 days' },
+  { slug: 'ai-chatbot', name: 'AI Chatbot (₹8,000+)', typical: '~3-5 days' },
+  { slug: 'custom-ai-agent', name: 'Custom AI Agent (₹20,000+)', typical: '~7-10 days' },
+  { slug: 'custom-llm', name: 'Custom LLM Integration (₹30,000+)', typical: '~7-12 days' },
+  
+  // Academic & Research
+  { slug: 'fullstack-prototype', name: 'Full-Stack Prototype (₹8,000+)', typical: '~4-7 days' },
+  { slug: 'ml-prototype', name: 'Machine Learning Prototype (₹12,000+)', typical: '~5-8 days' },
+  { slug: 'deep-learning-prototype', name: 'Deep Learning Prototype (₹18,000+)', typical: '~7-12 days' },
+  { slug: 'advanced-ai-research', name: 'Advanced AI Research Prototype (₹25,000+)', typical: '~10-15 days' },
+  
+  // Additional Services
+  { slug: 'deployment-hosting', name: 'Website / App Deployment & Hosting (Custom Quote)', typical: '~1-3 days' },
+  { slug: 'seo-api-backend', name: 'SEO / API / Backend / Maintenance (Custom Quote)', typical: 'Custom' },
+  { slug: 'not_sure', name: 'Not sure yet / Advise me based on scope', typical: 'Flexible' },
 ];
 
 function BriefForm() {
@@ -555,10 +576,10 @@ function BriefForm() {
                       className="w-full p-3.5 rounded-[14px] bg-[var(--ivory)] border border-[var(--border-light)] text-sm focus:border-[var(--brand)] text-[var(--ink)]"
                     >
                       <option value="not_sure">Not sure / Advise based on scope</option>
-                      <option value="under_2500">Under $2,500 USD</option>
-                      <option value="2500_5000">$2,500 – $5,000 USD</option>
-                      <option value="5000_10000">$5,000 – $10,000 USD</option>
-                      <option value="10000_plus">$10,000+ USD</option>
+                      <option value="under_10k">Under ₹10,000</option>
+                      <option value="10k_25k">₹10,000 – ₹25,000</option>
+                      <option value="25k_50k">₹25,000 – ₹50,000</option>
+                      <option value="50k_plus">₹50,000+</option>
                     </select>
                   </div>
 
@@ -768,7 +789,7 @@ function BriefForm() {
                         className="mt-0.5 rounded text-[var(--brand)] focus:ring-[var(--brand)]"
                       />
                       <span>
-                        Optional: Keep me informed of future BuilDo product capabilities and technical deep-dives (uncheck anytime).
+                        Optional: Keep me informed of future Awyk Digital product capabilities and technical deep-dives (uncheck anytime).
                       </span>
                     </label>
                   </div>

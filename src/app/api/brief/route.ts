@@ -96,7 +96,7 @@ export async function POST(req: NextRequest) {
 
     if (insertError) {
       console.error('Supabase Brief Insert Error:', insertError);
-      return NextResponse.json({ error: 'Failed to record brief. Please try again or email hello@buildo.design.' }, { status: 500 });
+      return NextResponse.json({ error: 'Failed to record brief. Please try again or email hello@awyk.design.' }, { status: 500 });
     }
 
     // If discussion mode with requested appointments, record appointment slot

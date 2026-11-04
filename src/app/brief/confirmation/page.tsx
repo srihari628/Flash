@@ -137,7 +137,7 @@ function ConfirmationContent() {
                   1
                 </span>
                 <span>
-                  <strong>Yash or Priya reviews your brief:</strong> We check architecture, database requirements, and target timeline.
+                  <strong>Yash, Priya, Srihari, or Basha reviews your brief:</strong> We check architecture, database requirements, and target timeline.
                 </span>
               </div>
               <div className="flex items-start gap-2.5">

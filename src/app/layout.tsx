@@ -17,15 +17,15 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "BuilDo — Your idea. Live in days.",
+  title: "Awyk — Custom websites & apps. Delivered in days.",
   description:
-    "Custom websites, apps and automations. Built, tested and launched by our team with guaranteed response times and end-to-end delivery responsibility.",
+    "Awyk Digital — Custom websites & apps. Delivered in days. Built, tested and launched by our dedicated team with fixed pricing and end-to-end delivery responsibility.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   openGraph: {
-    title: "BuilDo — Your idea. Live in days.",
-    description: "Managed custom software delivery. Built, tested and launched by our dedicated team.",
+    title: "Awyk Digital — Custom websites & apps. Delivered in days.",
+    description: "Awyk Digital — Custom websites & apps. Delivered in days. Built, tested and launched by our dedicated team.",
     type: "website",
-    siteName: "BuilDo",
+    siteName: "Awyk",
   },
   robots: {
     index: true,

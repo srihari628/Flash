@@ -5,8 +5,8 @@ import Footer from '@/components/layout/Footer';
 import { AlertCircle, ShieldCheck } from 'lucide-react';
 
 export const metadata = {
-  title: 'Terms of Service (Staging Governance) — BuilDo',
-  description: 'Operating terms, proposal validity, milestone payment definitions, and IP transfer policies for BuilDo services.',
+  title: 'Terms of Service & Agency Model — Awyk Digital',
+  description: 'Operating terms, proposal validity, commercial terms, and IP transfer policies for Awyk Digital services.',
 };
 
 export default function TermsPage() {
@@ -44,7 +44,7 @@ export default function TermsPage() {
                 1. Nature of the Service
               </h2>
               <p>
-                BuilDo is an accountable managed digital product service providing custom software engineering, website development, mobile application builds, and automation setups. Our founders (Yash and Priya) and lead engineers remain directly responsible for scoped delivery.
+                Awyk Digital is an accountable managed digital product service providing custom website development, mobile application builds, AI & automation workflows, and academic research prototypes. Our founders (Yash, Priya, Srihari, and Basha) remain directly responsible for scoped delivery.
               </p>
             </section>
 
@@ -53,7 +53,7 @@ export default function TermsPage() {
                 2. Proposals & Immutable Scopes
               </h2>
               <p>
-                Initial enquiries and briefs submitted via BuilDo are non-binding. An engagement becomes an official order only when: (a) a written proposal detailing scope deliverables and milestone amounts is formally accepted by the customer, and (b) the required initial advance or milestone payment is confirmed.
+                Initial enquiries and briefs submitted via Awyk Digital are non-binding. An engagement becomes an official order only when: (a) a written proposal detailing scope deliverables and milestone amounts is formally accepted by the customer, and (b) the required initial advance or milestone payment is confirmed.
               </p>
               <p className="mt-2">
                 Accepted proposals constitute an immutable snapshot. Any scope additions after acceptance require an explicit Change Request with clear price and timeline adjustments approved by both parties before work proceeds.
@@ -62,11 +62,18 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-lg font-heading font-bold text-[var(--ink)] mb-2">
-                3. Milestone Schedule & Payment Handling
+                3. Commercial Terms & Agency Partnership Model
               </h2>
               <p>
-                Payments are handled through verified payment provider integrations. Build fees cover our custom design, architecture, and coding work. Customers are directly responsible for third-party subscriptions (such as custom domains, hosting provider accounts, or external API usage fees).
+                Pricing and payment schedules will be mutually agreed before starting. Third-party expenses, if any, will be discussed separately. Additional features or changes can be estimated separately, and post-delivery support can be tailored based on project requirements.
               </p>
+              <div className="mt-3 p-4 rounded-[14px] bg-[var(--ivory)] border border-[var(--border-light)] text-xs space-y-2">
+                <span className="font-bold text-[var(--ink)] block uppercase tracking-wider">
+                  Agency Partnership Model (White-Label / Project-Based / Long-Term)
+                </span>
+                <p><strong>Agency Partner:</strong> Client acquisition and communication.</p>
+                <p><strong>Development Team:</strong> Technical execution and delivery.</p>
+              </div>
             </section>
 
             <section>
@@ -74,7 +81,7 @@ export default function TermsPage() {
                 4. Code Handover & Intellectual Property
               </h2>
               <p>
-                Upon receipt of final milestone payments and handover sign-off, all custom software source code, database migrations, configuration scripts, and visual design assets are transferred completely to the customer. BuilDo retains no ownership over customer intellectual property.
+                Upon receipt of final milestone payments and handover sign-off, all custom software source code, database migrations, configuration scripts, and visual design assets are transferred completely to the customer. Awyk Digital retains no ownership over customer intellectual property.
               </p>
             </section>
 

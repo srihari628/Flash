@@ -10,8 +10,115 @@ interface ProductsInteractiveGridProps {
   services: Service[];
 }
 
-// Authentic, domain-specific HD minimalist image pairs for each service in Flash / BuilDo
+// Authentic, domain-specific HD minimalist image pairs for each service in Awyk Digital
 const serviceImagePairs: Record<string, { first: string; second: string }> = {
+  // Website Development
+  'static-website': {
+    first: '/images/portfolio-1.jpg',
+    second: '/images/portfolio-2.jpg',
+  },
+  'cms-website': {
+    first: '/images/webapp-1.jpg',
+    second: '/images/webapp-2.jpg',
+  },
+  'custom-business-website': {
+    first: '/images/business-1.jpg',
+    second: '/images/business-2.jpg',
+  },
+  'premium-3d-website': {
+    first: '/images/showcase-aura.jpg',
+    second: '/images/showcase-synapse.jpg',
+  },
+  'ecommerce-website': {
+    first: '/images/ecommerce-1.jpg',
+    second: '/images/ecommerce-2.jpg',
+  },
+
+  // Mobile Application Development
+  'standard-mvp': {
+    first: '/images/mobile-1.jpg',
+    second: '/images/mobile-2.jpg',
+  },
+  'business-app': {
+    first: '/images/product-mobile.jpg',
+    second: '/images/mobile-2.jpg',
+  },
+  'business-pro': {
+    first: '/images/showcase-aura.jpg',
+    second: '/images/product-mobile.jpg',
+  },
+
+  // AI & Automation
+  'whatsapp-automation': {
+    first: '/images/automation-1.jpg',
+    second: '/images/automation-2.jpg',
+  },
+  'ai-whatsapp-assistant': {
+    first: '/images/service-automation.jpg',
+    second: '/images/automation-1.jpg',
+  },
+  'whatsapp-ecommerce': {
+    first: '/images/ecommerce-1.jpg',
+    second: '/images/automation-2.jpg',
+  },
+  'ai-chatbot': {
+    first: '/images/automation-2.jpg',
+    second: '/images/service-automation.jpg',
+  },
+  'custom-ai-agent': {
+    first: '/images/showcase-synapse.jpg',
+    second: '/images/automation-1.jpg',
+  },
+  'custom-llm': {
+    first: '/images/showcase-synapse.jpg',
+    second: '/images/webapp-1.jpg',
+  },
+
+  // Academic & Research
+  'fullstack-prototype': {
+    first: '/images/service-custom.jpg',
+    second: '/images/webapp-2.jpg',
+  },
+  'ml-prototype': {
+    first: '/images/showcase-synapse.jpg',
+    second: '/images/service-custom.jpg',
+  },
+  'deep-learning-prototype': {
+    first: '/images/showcase-synapse.jpg',
+    second: '/images/showcase-aura.jpg',
+  },
+  'advanced-ai-research': {
+    first: '/images/showcase-synapse.jpg',
+    second: '/images/showcase-komorebi.jpg',
+  },
+
+  // Additional Services
+  'app-deployment': {
+    first: '/images/mobile-1.jpg',
+    second: '/images/service-mobile.jpg',
+  },
+  'hosting-setup': {
+    first: '/images/service-bugfix.jpg',
+    second: '/images/product-bugfix.jpg',
+  },
+  'seo-setup': {
+    first: '/images/business-1.jpg',
+    second: '/images/portfolio-2.jpg',
+  },
+  'api-integration': {
+    first: '/images/automation-1.jpg',
+    second: '/images/service-automation.jpg',
+  },
+  'backend-development': {
+    first: '/images/webapp-1.jpg',
+    second: '/images/service-webapp.jpg',
+  },
+  'maintenance-support': {
+    first: '/images/service-bugfix.jpg',
+    second: '/images/product-bugfix.jpg',
+  },
+
+  // Legacy mappings for backwards compatibility
   'portfolio': {
     first: '/images/portfolio-1.jpg',
     second: '/images/portfolio-2.jpg',

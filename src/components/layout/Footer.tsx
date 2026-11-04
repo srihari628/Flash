@@ -18,7 +18,7 @@ export default function Footer() {
               What have you been waiting to build?
             </h2>
             <p className="text-[var(--text-muted-dark)] text-base sm:text-lg mb-8 leading-relaxed max-w-2xl">
-              Share your business concept, feature list, or reference links. Yash, Priya, and our project leads will review your brief and deliver a structured written scope.
+              Share your business concept, feature list, or reference links. Yash, Priya, Srihari, Basha, and our engineering leads will review your brief and deliver a structured written scope.
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <Link
@@ -43,11 +43,11 @@ export default function Footer() {
           {/* Col 1: Brand & Promise */}
           <div className="col-span-2">
             <Link href="/" className="font-heading text-2xl font-extrabold tracking-tight flex items-center mb-4">
-              BuilDo
+              Awyk
               <span className="inline-block w-2 h-2 rounded-full bg-[var(--brand)] ml-0.5" />
             </Link>
             <p className="text-[var(--text-muted-dark)] leading-relaxed mb-6 max-w-sm">
-              Custom websites, web applications, and automations. Scoped with clarity, engineered with precision, and delivered with full handover responsibility.
+              Awyk Digital — Custom websites & apps. Delivered in days. Scoped with clarity, engineered with precision, and delivered with full handover responsibility.
             </p>
             <div className="flex items-center gap-2 text-xs text-[var(--text-muted-dark)]">
               <Clock className="w-3.5 h-3.5 text-[var(--brand)]" />
@@ -62,33 +62,28 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2.5 text-[var(--text-muted-dark)]">
               <li>
-                <Link href="/products/web-app" className="hover:text-[var(--brand-soft)] transition-colors">
-                  Web Applications
+                <Link href="/products" className="hover:text-[var(--brand-soft)] transition-colors">
+                  Website Development
                 </Link>
               </li>
               <li>
-                <Link href="/products/business-website" className="hover:text-[var(--brand-soft)] transition-colors">
-                  Business Websites
+                <Link href="/products" className="hover:text-[var(--brand-soft)] transition-colors">
+                  Mobile App Development
                 </Link>
               </li>
               <li>
-                <Link href="/products/ecommerce" className="hover:text-[var(--brand-soft)] transition-colors">
-                  Boutique Commerce
+                <Link href="/products" className="hover:text-[var(--brand-soft)] transition-colors">
+                  AI & Automation
                 </Link>
               </li>
               <li>
-                <Link href="/products/mobile-app" className="hover:text-[var(--brand-soft)] transition-colors">
-                  iOS & Android Apps
+                <Link href="/products" className="hover:text-[var(--brand-soft)] transition-colors">
+                  Academic & Research Prototypes
                 </Link>
               </li>
               <li>
-                <Link href="/products/automation" className="hover:text-[var(--brand-soft)] transition-colors">
-                  Automations & APIs
-                </Link>
-              </li>
-              <li>
-                <Link href="/products/deployment-bugfix" className="hover:text-[var(--brand-soft)] transition-colors">
-                  Bug Fixing & Deploys
+                <Link href="/products" className="hover:text-[var(--brand-soft)] transition-colors">
+                  Agency Partnership Pricing
                 </Link>
               </li>
             </ul>
@@ -161,10 +156,10 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-[var(--border-dark)] flex flex-col sm:flex-row items-center justify-between text-xs text-[var(--text-muted-dark)] gap-4">
           <div className="flex items-center gap-3">
-            <span>© {new Date().getFullYear()} BuilDo Studio. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} Awyk Digital Studio. All rights reserved.</span>
             <span className="hidden sm:inline">•</span>
             <span className="text-[var(--text-muted-dark)]">
-              Direct Contact: <a href="mailto:hello@buildo.design" className="underline hover:text-[var(--ivory)]">hello@buildo.design</a>
+              Direct Contact: <a href="mailto:hello@awyk.design" className="underline hover:text-[var(--ivory)]">hello@awyk.design</a>
             </span>
           </div>
           <div className="flex items-center gap-4">

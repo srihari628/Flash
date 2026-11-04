@@ -7,7 +7,7 @@ import { createClient } from '@/lib/supabase/server';
 import { ShieldCheck, Clock, Settings, History, CheckCircle2 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Operational Response Settings & SLA — BuilDo Staff',
+  title: 'Operational Response Settings & SLA — Awyk Staff',
   description: 'Manage SLA parameters, response promise configuration, and audit logs.',
 };
 

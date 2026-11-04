@@ -4,8 +4,9 @@ import { notFound } from 'next/navigation';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { ArrowRight, ArrowLeft, Clock, CheckCircle2, ShieldCheck, Layers, GitBranch, Key, LifeBuoy } from 'lucide-react';
-import { createClient } from '@/lib/supabase/server';
+import { getServiceBySlug, ALL_SERVICES } from '@/lib/servicesData';
 import { Service } from '@/lib/types';
+import { Metadata } from 'next';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -13,21 +14,29 @@ interface PageProps {
 
 export const dynamic = 'force-dynamic';
 
-export default async function ServiceDetailPage({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const supabase = await createClient();
+  const srv = getServiceBySlug(slug);
 
-  const { data: service } = await supabase
-    .from('services')
-    .select('*')
-    .eq('slug', slug)
-    .single();
-
-  if (!service) {
-    notFound();
+  if (!srv) {
+    return {
+      title: 'Service Not Found — Awyk Digital',
+    };
   }
 
-  const srv: Service = service as Service;
+  return {
+    title: `${srv.name} (${srv.formatted_price}) — Awyk Digital`,
+    description: `${srv.tagline} Delivered in ~${srv.typical_days} days by Awyk Digital with fixed pricing and 100% IP transfer.`,
+  };
+}
+
+export default async function ServiceDetailPage({ params }: PageProps) {
+  const { slug } = await params;
+  const srv = getServiceBySlug(slug);
+
+  if (!srv) {
+    notFound();
+  }
 
   return (
     <div className="min-h-screen bg-[var(--ivory)] text-[var(--ink)] flex flex-col">
@@ -42,7 +51,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--brand)] mb-8 transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to all services</span>
+            <span>Back to all services & pricing</span>
           </Link>
 
           {/* Service Header */}
@@ -73,7 +82,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <div className="text-xs text-[var(--text-muted)]">
-                Starting from <strong className="text-base text-[var(--ink)] tabular-nums font-heading">${(srv.starting_price_minor / 100).toLocaleString()} USD</strong> (Fixed upon proposal approval)
+                Pricing: <strong className="text-lg text-[var(--brand)] tabular-nums font-heading font-extrabold">{srv.formatted_price}</strong> (Fixed upon proposal approval)
               </div>
             </div>
           </div>
@@ -124,14 +133,14 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             {/* Right 5 cols: Accountability & How It Works */}
             <div className="md:col-span-5 space-y-6">
               <div className="rounded-[20px] bg-[var(--ink)] text-[var(--ivory)] border border-[var(--border-dark)] p-8">
-                <span className="text-xs font-semibold uppercase tracking-wider text-[var(--brand-soft)] block mb-2">
+                <span className="text-xs font-semibold uppercase tracking-wider text-[var(--brand-soft)] block mb-2 font-mono">
                   Accountability Guarantee
                 </span>
                 <h3 className="text-xl font-heading font-bold mb-3">
                   Named Leadership Review
                 </h3>
                 <p className="text-xs text-[var(--text-muted-dark)] leading-relaxed mb-6">
-                  Every proposal for this service is personally reviewed by founders Yash or Priya. You receive an exact written scope within our 6-hour response SLA.
+                  Every proposal for this service is personally reviewed by founders Yash, Priya, Srihari, or Basha. You receive an exact written scope within our 6-hour response SLA.
                 </p>
 
                 <div className="space-y-3 text-xs border-t border-[var(--border-dark)] pt-4">
@@ -160,7 +169,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 </p>
                 <Link
                   href={`/brief?service=${srv.slug}`}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-[10px] bg-[var(--brand)] text-[var(--ivory)] text-xs font-bold hover:bg-[var(--brand-hover)] transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-[10px] bg-[var(--brand)] text-[var(--ivory)] text-xs font-bold hover:bg-[var(--brand-hover)] transition-colors shadow-sm"
                 >
                   <span>Submit brief now</span>
                   <ArrowRight className="w-3.5 h-3.5" />

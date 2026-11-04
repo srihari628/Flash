@@ -5,7 +5,7 @@ import Footer from '@/components/layout/Footer';
 import { ArrowRight, Clock, ShieldCheck, CheckCircle2, GitBranch, Key, LifeBuoy, Terminal, MessageSquare, Check } from 'lucide-react';
 
 export const metadata = {
-  title: 'How It Works — BuilDo',
+  title: 'How It Works — Awyk Digital',
   description: 'Our disciplined four-stage delivery method. From initial idea intake to verified milestone previews, staging deployments, and full IP handover.',
 };
 
@@ -23,7 +23,7 @@ export default function HowItWorksPage() {
               The Engineering Process
             </span>
             <h1 className="text-4xl sm:text-6xl font-heading font-extrabold tracking-tight text-[var(--ink)] mb-4">
-              How BuilDo delivers.<br />Without the chaos.
+              How Awyk delivers.<br />Without the chaos.
             </h1>
             <p className="text-[var(--text-muted)] text-base sm:text-lg leading-relaxed">
               Traditional software development often breaks down in communication: missed estimates, changing scope, and technical debt. Here is how our managed process guarantees clarity, quality, and on-time handover.
@@ -68,7 +68,7 @@ export default function HowItWorksPage() {
                   </span>
                   <div className="flex items-center gap-2 text-xs text-[var(--text-muted)]">
                     <Check className="w-3.5 h-3.5 text-[var(--brand)]" />
-                    <span>Every submission reviewed by Yash, Priya, or Lead</span>
+                    <span>Every submission reviewed by Yash, Priya, Srihari, or Basha</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-[var(--text-muted)]">
                     <Check className="w-3.5 h-3.5 text-[var(--brand)]" />

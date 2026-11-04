@@ -134,18 +134,16 @@ VALUES
 (
     'company_profile',
     '{
-        "name": "BuilDo",
-        "tagline": "Your idea. Live in days.",
-        "description": "Managed digital product service for custom websites, apps, and automations.",
+        "name": "Awyk Digital",
+        "tagline": "Awyk Digital — Custom websites & apps. Delivered in days.",
+        "description": "Managed digital product service for custom websites, apps, automations, and academic prototypes.",
         "founders": [
-            {"name": "Yash", "role": "Co-Founder & Engineering Lead", "bio": "Systems architect specializing in high-performance web applications and resilient infra."},
-            {"name": "Priya", "role": "Co-Founder & Product Design Lead", "bio": "Design lead focused on editorial visual craft, product clarity, and conversion typography."}
+            {"name": "Yash", "role": "Co-Founder & Technical Architect", "bio": "Systems architect specializing in high-performance web applications and resilient infra."},
+            {"name": "Priya", "role": "Co-Founder & Product Design Lead", "bio": "Design lead focused on editorial visual craft, product clarity, and conversion typography."},
+            {"name": "Srihari", "role": "Co-Founder & Technical Execution Lead", "bio": "Full-stack engineering lead overseeing development sprints and AI pipelines."},
+            {"name": "Basha", "role": "Co-Founder & Head of Client Partnerships", "bio": "Client acquisition strategist and agency partnership lead."}
         ],
-        "team_leads": [
-            {"name": "Dev", "role": "Full-Stack Project Lead", "bio": "Specialist in end-to-end web architectures, APIs, and scalable databases."},
-            {"name": "Ananya", "role": "Design Systems & Mobile Lead", "bio": "Specialist in cross-platform mobile apps and responsive interface engineering."}
-        ],
-        "support_email": "hello@buildo.design"
+        "support_email": "hello@awyk.design"
     }'::jsonb,
     'Truthful company profile and leadership biographies'
 )

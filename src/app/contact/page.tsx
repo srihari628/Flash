@@ -46,7 +46,7 @@ export default function ContactPage() {
 
       setSubmitted(true);
     } catch (err: any) {
-      setError(err.message || 'Something went wrong. Please email hello@buildo.design directly.');
+      setError(err.message || 'Something went wrong. Please email hello@awyk.design directly.');
     } finally {
       setIsSubmitting(false);
     }
@@ -67,7 +67,7 @@ export default function ContactPage() {
               Get in touch with our team.
             </h1>
             <p className="text-[var(--text-muted)] text-base sm:text-lg leading-relaxed">
-              Have an exploratory question or general enquiry? Drop us a message below or email our founders directly at <a href="mailto:hello@buildo.design" className="text-[var(--brand)] underline font-medium">hello@buildo.design</a>.
+              Have an exploratory question or general enquiry? Drop us a message below or email our founders directly at <a href="mailto:hello@awyk.design" className="text-[var(--brand)] underline font-medium">hello@awyk.design</a>.
             </p>
           </div>
 
@@ -82,7 +82,7 @@ export default function ContactPage() {
                     </div>
                     <h3 className="text-2xl font-heading font-bold mb-2">Message Received</h3>
                     <p className="text-xs text-[var(--text-muted)] max-w-sm mx-auto mb-6">
-                      Thank you for contacting BuilDo. Our project leads will reply to your email within our 6-hour SLA.
+                      Thank you for contacting Awyk Digital. Our project leads will reply to your email within our 6-hour SLA.
                     </p>
                     <Link
                       href="/"
@@ -178,13 +178,13 @@ export default function ContactPage() {
                   6 Elapsed Hours
                 </h3>
                 <p className="text-xs text-[var(--text-muted-dark)] leading-relaxed mb-6">
-                  Every inquiry receives a direct review by Yash or Priya. We never send automated canned marketing templates pretending to be personal replies.
+                  Every inquiry receives a direct review by our leadership team: Yash, Priya, Srihari, or Basha. We never send automated canned marketing templates pretending to be personal replies.
                 </p>
 
                 <div className="space-y-3 text-xs border-t border-[var(--border-dark)] pt-4 text-[var(--text-muted-dark)]">
                   <div className="flex items-center gap-2">
                     <Mail className="w-4 h-4 text-[var(--brand)]" />
-                    <span>hello@buildo.design</span>
+                    <span>hello@awyk.design</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Clock className="w-4 h-4 text-[var(--brand)]" />

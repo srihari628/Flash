@@ -7,7 +7,7 @@ import { createClient } from '@/lib/supabase/server';
 import { PortfolioItem } from '@/lib/types';
 
 export const metadata = {
-  title: 'Selected Work & Concepts — BuilDo',
+  title: 'Selected Work & Concepts — Awyk Digital',
   description: 'Explore verified architecture specifications, interactive prototypes, and engineering concepts crafted with restraint and high performance.',
 };
 

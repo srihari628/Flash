@@ -1,13 +1,13 @@
-# BuilDo — Digital Product Studio
+# Awyk Digital — Custom Websites & Apps. Delivered in Days.
 
-> **"Your idea. Live in days."**  
-> Custom websites, web applications, mobile products, and automations. Scoped with clarity, engineered with precision, and delivered with full handover responsibility.
+> **"Awyk Digital — Custom websites & apps. Delivered in days."**  
+> Custom websites, web applications, mobile products, AI automations, and academic research prototypes. Scoped with clarity, engineered with precision, and delivered with full handover responsibility.
 
 ---
 
 ## 1. Overview & Architecture
 
-BuilDo is a complete, production-ready digital product ordering and delivery service built according to the **BuilDo Antigravity Master Blueprint**. It bridges high-converting editorial design with an accountable engineering delivery pipeline.
+Awyk Digital is a complete, production-ready digital product ordering and delivery service. It bridges high-converting editorial design with an accountable engineering delivery pipeline.
 
 ### Core Technology Stack
 - **Framework**: [Next.js](https://nextjs.org/) (App Router, React 19, TypeScript)
@@ -51,7 +51,7 @@ The visual design system strictly follows the locked palette:
 - `/work`: Case studies with strict provenance labeling (`Concept preview`, `Studio build`, `Client engagement`) and internal specification views with zero forbidden external client links.
 - `/work/[slug]`: Architectural breakdowns, technology stack details, and permitted delivery evidence.
 - `/how-it-works`: Complete 4-stage delivery breakdown (Intake -> Proposal -> Staging Workspace -> Handover).
-- `/about`: Truthful leadership biographies for founders **Yash** and **Priya**, plus team leads **Dev** and **Ananya**.
+- `/about`: Truthful leadership biographies for founders **Yash**, **Priya**, **Srihari**, and **Basha**.
 - `/faq`: Comprehensive pricing model, domain/hosting transparency, and intellectual property terms.
 - `/contact`: Direct enquiry channel with guaranteed 6-hour review commitment.
 - `/terms` & `/privacy`: Staging-governed commercial policies and strict client IP confidentiality terms.

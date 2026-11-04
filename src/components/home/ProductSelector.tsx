@@ -387,10 +387,10 @@ export default function ProductSelector({ services }: ProductSelectorProps) {
                     <span className="text-xs text-[var(--text-muted)] block">
                       Scope-qualified starting range
                     </span>
-                    <span className="text-2xl font-heading font-extrabold text-[var(--ink)] tabular-nums">
-                      ${(activeService.starting_price_minor / 100).toLocaleString()}
-                      <span className="text-xs font-normal text-[var(--text-muted)] ml-1">
-                        USD (Fixed upon proposal approval)
+                    <span className="text-2xl font-heading font-extrabold text-[var(--brand)] tabular-nums">
+                      {activeService.formatted_price || (activeService.currency === 'INR' ? `₹${(activeService.starting_price_minor / 100).toLocaleString()}+` : `$${(activeService.starting_price_minor / 100).toLocaleString()} USD`)}
+                      <span className="text-xs font-normal text-[var(--text-muted)] ml-1.5">
+                        (Fixed upon proposal approval)
                       </span>
                     </span>
                   </div>

@@ -1,4 +1,4 @@
-// BuilDo Administrative Role Setup Script
+// Awyk Digital Administrative Role Setup Script
 // Usage: node scripts/create-staff.js <user-email> [role: staff | developer | reviewer | admin]
 
 const { createClient } = require('@supabase/supabase-js');

@@ -5,17 +5,17 @@ import Footer from '@/components/layout/Footer';
 import { ArrowRight, ShieldCheck, HeartHandshake, Code2, Sparkles, CheckCircle2 } from 'lucide-react';
 
 export const metadata = {
-  title: 'About the Studio & Founders — BuilDo',
-  description: 'Meet the team behind BuilDo. Founded by Yash and Priya, we provide an accountable managed service for custom software, web platforms, and mobile products.',
+  title: 'About the Studio & Founders — Awyk Digital',
+  description: 'Meet the team behind Awyk Digital: Yash, Priya, Srihari, and Basha. We provide an accountable managed service for custom software, web platforms, and mobile products delivered in days.',
 };
 
 export default function AboutPage() {
   const team = [
     {
       name: 'Yash',
-      role: 'Co-Founder & Engineering Lead',
+      role: 'Co-Founder & Technical Architect',
       bio: 'Systems architect specializing in high-performance web applications, resilient database schemas, and cloud deployment pipelines.',
-      focus: 'Architecture, Supabase Postgres, and 60 FPS performance engineering.',
+      focus: 'Architecture, Cloud Infrastructure, and 60 FPS Performance Engineering.',
     },
     {
       name: 'Priya',
@@ -24,16 +24,16 @@ export default function AboutPage() {
       focus: 'Design tokens, layout composition, and responsive usability.',
     },
     {
-      name: 'Dev',
-      role: 'Full-Stack Project Lead',
-      bio: 'Senior engineer managing client delivery sprints, API integrations, and webhook orchestration with zero dropped events.',
-      focus: 'Next.js App Router, React 19, and third-party API adapters.',
+      name: 'Srihari',
+      role: 'Co-Founder & Technical Execution Lead',
+      bio: 'Full-stack engineering lead overseeing development sprints, AI & automation pipelines, database integration, and high-velocity shipping.',
+      focus: 'Full-Stack Architecture, AI & LLM Integrations, and Production Deployments.',
     },
     {
-      name: 'Ananya',
-      role: 'Design Systems & Mobile Lead',
-      bio: 'Specialist in cross-platform mobile product development, native UI patterns, and App Store review compliance.',
-      focus: 'React Native / Expo, mobile UX, and multi-platform design tokens.',
+      name: 'Basha',
+      role: 'Co-Founder & Head of Client Partnerships',
+      bio: 'Client acquisition strategist and agency partnership lead ensuring transparent communication, accurate scoping, and seamless client delivery.',
+      focus: 'Client Acquisition, Agency Partnership Models, and Delivery Governance.',
     },
   ];
 
@@ -53,7 +53,7 @@ export default function AboutPage() {
               Craftsmanship.<br />Accountability from day one.
             </h1>
             <p className="text-[var(--text-muted)] text-base sm:text-lg leading-relaxed">
-              BuilDo was created to solve a persistent frustration in software delivery: the gap between having a strong business idea and the engineering capability to launch it reliably.
+              Awyk Digital was created to solve a persistent frustration in software delivery: the gap between having a strong business idea and the engineering capability to launch it reliably. Custom websites & apps. Delivered in days.
             </p>
           </div>
 
@@ -140,10 +140,10 @@ export default function AboutPage() {
           <div className="rounded-[22px] bg-[var(--ink)] text-[var(--ivory)] p-8 sm:p-12 border border-[var(--border-dark)] flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="max-w-xl">
               <h3 className="text-2xl font-heading font-extrabold mb-2">
-                Have questions for Yash or Priya directly?
+                Have questions for Yash, Priya, Srihari, or Basha directly?
               </h3>
               <p className="text-sm text-[var(--text-muted-dark)] leading-relaxed">
-                We are always available at <a href="mailto:hello@buildo.design" className="text-[var(--brand-soft)] underline">hello@buildo.design</a> or via our structured project intake flow.
+                We are always available at <a href="mailto:hello@awyk.design" className="text-[var(--brand-soft)] underline">hello@awyk.design</a> or via our structured project intake flow.
               </p>
             </div>
             <Link

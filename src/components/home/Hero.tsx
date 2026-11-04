@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -96,7 +96,7 @@ export default function Hero() {
               maskImage:
                 'linear-gradient(to bottom, transparent 0%, black 5%, black 86%, transparent 100%)',
             }}
-            aria-label="BuilDo bridge animation"
+            aria-label="Awyk bridge animation"
           />
         </div>
 

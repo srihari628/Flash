@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Client Workspace — BuilDo',
+  title: 'Client Workspace — Awyk Digital',
   description: 'Track your project briefs, review proposals, test staging builds, and manage milestones in your private customer workspace.',
 };
 

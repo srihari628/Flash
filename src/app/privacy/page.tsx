@@ -5,8 +5,8 @@ import Footer from '@/components/layout/Footer';
 import { ShieldCheck, Lock } from 'lucide-react';
 
 export const metadata = {
-  title: 'Privacy Policy — BuilDo',
-  description: 'How BuilDo handles brief submissions, client ideas, quarantined file attachments, and personal contact information.',
+  title: 'Privacy Policy — Awyk Digital',
+  description: 'How Awyk Digital handles brief submissions, client ideas, quarantined file attachments, and personal contact information.',
 };
 
 export default function PrivacyPage() {
@@ -71,7 +71,7 @@ export default function PrivacyPage() {
                 5. Contact & Data Deletion
               </h2>
               <p>
-                You may request complete deletion of your unaccepted briefs or workspace account at any time by emailing <a href="mailto:hello@buildo.design" className="text-[var(--brand)] underline">hello@buildo.design</a>.
+                You may request complete deletion of your unaccepted briefs or workspace account at any time by emailing <a href="mailto:hello@awyk.design" className="text-[var(--brand)] underline">hello@awyk.design</a>.
               </p>
             </section>
           </div>

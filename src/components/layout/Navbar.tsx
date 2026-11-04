@@ -253,14 +253,14 @@ export default function Navbar({ theme = 'light' }: NavbarProps) {
               href="/"
               onClick={scrollToTop}
               className="flex items-center gap-1 focus-visible:outline-none py-1 group pr-1"
-              aria-label="BuilDo Home"
+              aria-label="Awyk Home"
             >
               <span
                 className={`font-heading font-extrabold tracking-tight flex items-center transition-all ${
                   isScrolled ? 'text-[17px] sm:text-[18px]' : 'text-xl sm:text-2xl'
                 } ${isDark ? 'text-[var(--ivory)]' : 'text-[#171217]'}`}
               >
-                BuilDo
+                Awyk
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--brand)] ml-0.5 group-hover:scale-125 transition-transform" />
               </span>
             </Link>

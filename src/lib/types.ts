@@ -37,6 +37,7 @@ export interface Service {
   outcome: string;
   typical_days: number;
   starting_price_minor: number;
+  formatted_price?: string;
   currency: string;
   features: string[];
   deliverables: string[];

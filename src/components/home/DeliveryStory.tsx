@@ -84,7 +84,7 @@ export default function DeliveryStory() {
           <div className="p-3 rounded-[10px] bg-[var(--ivory)] border border-[var(--border-light)] flex items-center justify-between text-xs">
             <span className="text-[var(--text-muted)]">Staging URL:</span>
             <span className="font-mono text-[var(--brand)] font-semibold flex items-center gap-1">
-              preview.buildo.space/v2
+              preview.awyk.space/v2
               <ArrowUpRight className="w-3.5 h-3.5" />
             </span>
           </div>
@@ -199,7 +199,7 @@ export default function DeliveryStory() {
               Backed by our named leadership team.
             </h3>
             <p className="text-[var(--text-muted-dark)] text-base sm:text-lg leading-relaxed">
-              BuilDo was created by Yash and Priya to eliminate the broken experience of hiring unpredictable freelance contractors. Every project has a dedicated engineering lead accountable for quality and schedule adherence.
+              Awyk Digital was founded by Yash, Priya, Srihari, and Basha to eliminate the broken experience of hiring unpredictable freelance contractors. Every project has a dedicated engineering lead accountable for quality and schedule adherence.
             </p>
           </div>
 
