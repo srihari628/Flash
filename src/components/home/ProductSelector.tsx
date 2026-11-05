@@ -10,7 +10,7 @@ interface ProductSelectorProps {
 }
 
 export default function ProductSelector({ services }: ProductSelectorProps) {
-  const [selectedSlug, setSelectedSlug] = useState<string>(services[0]?.slug || 'portfolio');
+  const [selectedSlug, setSelectedSlug] = useState<string>(services[0]?.slug || 'static-website');
 
   const activeService = services.find((s) => s.slug === selectedSlug) || services[0];
   const activeIndex = services.findIndex((s) => s.slug === selectedSlug);
@@ -18,11 +18,12 @@ export default function ProductSelector({ services }: ProductSelectorProps) {
   // Custom visual stage render per service category
   const renderVisualStage = (service: Service) => {
     switch (service.slug) {
+      case 'static-website':
       case 'portfolio':
         return (
           <div className="rounded-[16px] bg-[var(--ink)] text-[var(--ivory)] p-6 border border-[var(--border-dark)] relative overflow-hidden">
             <div className="flex items-center justify-between text-xs text-[var(--brand-soft)] border-b border-[var(--border-dark)] pb-3 mb-4">
-              <span className="font-mono text-[11px]">STUDIO EXHIBITION PREVIEW</span>
+              <span className="font-mono text-[11px]">STATIC EDITORIAL PREVIEW</span>
               <span className="px-2 py-0.5 rounded bg-[var(--surface-dark)] border border-[var(--border-dark)]">60 FPS Transitions</span>
             </div>
             <div className="space-y-4">
@@ -32,7 +33,7 @@ export default function ProductSelector({ services }: ProductSelectorProps) {
               <div className="grid grid-cols-2 gap-3 pt-2">
                 <div className="p-3.5 rounded-[12px] bg-[var(--surface-dark)] border border-[var(--border-dark)]">
                   <span className="text-[10px] text-[var(--text-muted-dark)] block uppercase tracking-wider mb-1">Layout</span>
-                  <span className="text-xs font-semibold text-[var(--ivory)]">Art-Directed Case Studies</span>
+                  <span className="text-xs font-semibold text-[var(--ivory)]">Art-Directed Pages</span>
                 </div>
                 <div className="p-3.5 rounded-[12px] bg-[var(--surface-dark)] border border-[var(--border-dark)]">
                   <span className="text-[10px] text-[var(--text-muted-dark)] block uppercase tracking-wider mb-1">Performance</span>
@@ -43,7 +44,9 @@ export default function ProductSelector({ services }: ProductSelectorProps) {
           </div>
         );
 
+      case 'cms-website':
       case 'business-website':
+      case 'custom-business-website':
         return (
           <div className="rounded-[16px] bg-[var(--ivory)] text-[var(--ink)] p-6 border border-[var(--border-light)] relative shadow-sm">
             <div className="flex items-center justify-between text-xs text-[var(--text-muted)] border-b border-[var(--border-light)] pb-3 mb-4">
@@ -55,7 +58,7 @@ export default function ProductSelector({ services }: ProductSelectorProps) {
                 Structured narrative architecture with headless content control.
               </h4>
               <p className="text-xs text-[var(--text-muted)] leading-relaxed">
-                Eliminates slow, bloated themes. Delivers fast server-rendered pages, clear lead capture verification, and tailored MDX editors.
+                Eliminates slow, bloated themes. Delivers fast server-rendered pages, clear lead capture verification, and tailored MDX/CMS editors.
               </p>
               <div className="flex items-center gap-2 pt-2">
                 <span className="text-[11px] px-2.5 py-1 rounded-full bg-[var(--brand-soft)] text-[var(--brand)] font-semibold">
@@ -64,6 +67,138 @@ export default function ProductSelector({ services }: ProductSelectorProps) {
                 <span className="text-[11px] px-2.5 py-1 rounded-full bg-[var(--surface)] border border-[var(--border-light)] text-[var(--text-muted)]">
                   Instant Form Routing
                 </span>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'premium-3d-website':
+        return (
+          <div className="rounded-[16px] bg-[var(--ink)] text-[var(--ivory)] p-6 border border-[var(--border-dark)] relative overflow-hidden">
+            <div className="flex items-center justify-between text-xs text-[var(--brand-soft)] border-b border-[var(--border-dark)] pb-3 mb-4 font-mono">
+              <span className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[var(--brand)] animate-pulse" />
+                <span>THREE.JS & WEBGL INTERACTION</span>
+              </span>
+              <span>60 FPS GPU Render</span>
+            </div>
+            <div className="space-y-3">
+              <div className="text-xl font-heading font-bold text-[var(--ivory)]">
+                Immersive 3D environments, fluid scroll choreography, and tactile spatial interfaces.
+              </div>
+              <div className="grid grid-cols-2 gap-3 pt-2">
+                <div className="p-3 rounded-[10px] bg-[var(--surface-dark)] border border-[var(--border-dark)] text-xs">
+                  <span className="text-[10px] text-[var(--text-muted-dark)] block">Framework</span>
+                  <span className="font-bold text-[var(--ivory)]">Three.js / React Three Fiber</span>
+                </div>
+                <div className="p-3 rounded-[10px] bg-[var(--surface-dark)] border border-[var(--border-dark)] text-xs">
+                  <span className="text-[10px] text-[var(--text-muted-dark)] block">Optimization</span>
+                  <span className="font-bold text-emerald-400">Zero Framerate Jitter</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'ecommerce-website':
+      case 'ecommerce':
+        return (
+          <div className="rounded-[16px] bg-[var(--surface)] text-[var(--ink)] p-6 border border-[var(--border-light)] relative shadow-sm">
+            <div className="flex items-center justify-between text-xs text-[var(--text-muted)] border-b border-[var(--border-light)] pb-3 mb-4">
+              <span className="font-mono text-[11px] text-[var(--brand)] font-semibold">BOUTIQUE DTC STOREFRONT</span>
+              <span className="px-2 py-0.5 rounded bg-[var(--ivory)] border border-[var(--border-light)]">Instant Checkout</span>
+            </div>
+            <div className="grid grid-cols-2 gap-3 mb-3">
+              <div className="p-3 rounded-[10px] bg-[var(--ivory)] border border-[var(--border-light)]">
+                <span className="text-[10px] text-[var(--text-muted)] block uppercase">Catalogue Experience</span>
+                <span className="text-xs font-bold text-[var(--ink)]">Editorial Product Grid</span>
+              </div>
+              <div className="p-3 rounded-[10px] bg-[var(--ivory)] border border-[var(--border-light)]">
+                <span className="text-[10px] text-[var(--text-muted)] block uppercase">Cart Architecture</span>
+                <span className="text-xs font-bold text-[var(--brand)]">Server-Side State</span>
+              </div>
+            </div>
+            <p className="text-xs text-[var(--text-muted)] leading-relaxed">
+              Tailored for modern brands, creators, and commerce. Integrated with Razorpay, Cashfree, UPI, and fast local checkout.
+            </p>
+          </div>
+        );
+
+      case 'mobile-mvp':
+      case 'business-app':
+      case 'business-pro-app':
+      case 'mobile-app':
+        return (
+          <div className="rounded-[16px] bg-[var(--ink)] text-[var(--ivory)] p-6 border border-[var(--border-dark)] relative overflow-hidden">
+            <div className="flex items-center justify-between text-xs text-[var(--brand-soft)] border-b border-[var(--border-dark)] pb-3 mb-4">
+              <span className="font-mono text-[11px]">CROSS-PLATFORM NATIVE BUILD</span>
+              <span className="px-2 py-0.5 rounded bg-[var(--surface-dark)] border border-[var(--border-dark)]">iOS & Android</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-28 rounded-[12px] bg-[var(--surface-dark)] border border-[var(--border-dark)] p-2 flex flex-col justify-between flex-shrink-0">
+                <div className="w-4 h-1 rounded-full bg-[var(--border-dark)] mx-auto" />
+                <div className="space-y-1">
+                  <div className="w-full h-1.5 rounded bg-[var(--brand)]/60" />
+                  <div className="w-3/4 h-1.5 rounded bg-[var(--border-dark)]" />
+                </div>
+                <div className="w-3 h-3 rounded-full bg-[var(--brand)] mx-auto" />
+              </div>
+              <div className="space-y-1.5 text-xs">
+                <span className="font-bold text-[var(--ivory)] block">Unified Backend & Store Deployment</span>
+                <p className="text-[11px] text-[var(--text-muted-dark)] leading-relaxed">
+                  Single Flutter or React Native codebase compiling to signed iOS archive and Android APK, ready for Play Store & App Store compliance.
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'whatsapp-automation':
+      case 'ai-whatsapp-assistant':
+      case 'whatsapp-ecommerce':
+      case 'ai-chatbot':
+      case 'custom-ai-agent':
+      case 'custom-llm':
+      case 'automation':
+        return (
+          <div className="rounded-[16px] bg-[var(--surface-dark)] text-[var(--ivory)] p-6 border border-[var(--border-dark)] relative overflow-hidden font-mono text-xs">
+            <div className="flex items-center justify-between text-[var(--brand-soft)] border-b border-[var(--border-dark)] pb-3 mb-3">
+              <span>WHATSAPP & AI PIPELINE</span>
+              <span className="text-emerald-400">24/7 Automated Handover</span>
+            </div>
+            <div className="space-y-2 text-[11px]">
+              <div className="p-2.5 rounded bg-[var(--ink)] border border-[var(--border-dark)] flex items-center justify-between">
+                <span className="text-[var(--text-muted-dark)]">WhatsApp Cloud API</span>
+                <span className="text-[var(--brand-soft)]">Verified Webhook</span>
+              </div>
+              <div className="p-2.5 rounded bg-[var(--ink)] border border-[var(--border-dark)] flex items-center justify-between">
+                <span className="text-[var(--text-muted-dark)]">AI Context & Memory</span>
+                <span className="text-emerald-400">Vector Search & Rag</span>
+              </div>
+              <div className="p-2.5 rounded bg-[var(--ink)] border border-[var(--border-dark)] flex items-center justify-between">
+                <span className="text-[var(--text-muted-dark)]">Catalogue & Orders</span>
+                <span className="text-[var(--ivory)]">Instant Confirmation</span>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'fullstack-prototype':
+      case 'ml-prototype':
+      case 'deep-learning-prototype':
+      case 'advanced-ai-research':
+        return (
+          <div className="rounded-[16px] bg-[var(--ink)] text-[var(--ivory)] p-6 border border-[var(--border-dark)] relative overflow-hidden font-mono text-xs">
+            <div className="flex items-center justify-between text-[var(--brand-soft)] border-b border-[var(--border-dark)] pb-3 mb-3">
+              <span>RESEARCH & ML BENCHMARK</span>
+              <span className="text-emerald-400">Reproducible Codebase</span>
+            </div>
+            <div className="space-y-2 text-[11px]">
+              <div className="p-2 rounded bg-[var(--surface-dark)] text-[var(--text-muted-dark)]">
+                <span className="text-[var(--brand-soft)] font-bold">[model]</span> PyTorch / TensorFlow architecture with documented evaluation metrics
+              </div>
+              <div className="p-2 rounded bg-[var(--surface-dark)] text-emerald-400">
+                <span className="text-emerald-400 font-bold">[interface]</span> Interactive Next.js & FastAPI / Streamlit prototype for live demonstrations
               </div>
             </div>
           </div>
@@ -90,82 +225,9 @@ export default function ProductSelector({ services }: ProductSelectorProps) {
               <div className="p-3.5 rounded-[12px] bg-[var(--surface-dark)] border border-[var(--border-dark)] flex items-center justify-between">
                 <div>
                   <span className="text-xs font-bold text-[var(--ivory)] block">Transactional Data Pipelines</span>
-                  <span className="text-[11px] text-[var(--text-muted-dark)]">Stripe & LemonSqueezy integration</span>
+                  <span className="text-[11px] text-[var(--text-muted-dark)]">Payment gateways & webhooks</span>
                 </div>
                 <span className="text-[10px] px-2 py-1 rounded bg-[var(--ink)] text-[var(--brand-soft)] font-mono">Integrated</span>
-              </div>
-            </div>
-          </div>
-        );
-
-      case 'ecommerce':
-        return (
-          <div className="rounded-[16px] bg-[var(--surface)] text-[var(--ink)] p-6 border border-[var(--border-light)] relative shadow-sm">
-            <div className="flex items-center justify-between text-xs text-[var(--text-muted)] border-b border-[var(--border-light)] pb-3 mb-4">
-              <span className="font-mono text-[11px] text-[var(--brand)] font-semibold">BOUTIQUE DTC STOREFRONT</span>
-              <span className="px-2 py-0.5 rounded bg-[var(--ivory)] border border-[var(--border-light)]">Instant Checkout</span>
-            </div>
-            <div className="grid grid-cols-2 gap-3 mb-3">
-              <div className="p-3 rounded-[10px] bg-[var(--ivory)] border border-[var(--border-light)]">
-                <span className="text-[10px] text-[var(--text-muted)] block uppercase">Catalogue Experience</span>
-                <span className="text-xs font-bold text-[var(--ink)]">Editorial Product Grid</span>
-              </div>
-              <div className="p-3 rounded-[10px] bg-[var(--ivory)] border border-[var(--border-light)]">
-                <span className="text-[10px] text-[var(--text-muted)] block uppercase">Cart Architecture</span>
-                <span className="text-xs font-bold text-[var(--brand)]">Server-Side State</span>
-              </div>
-            </div>
-            <p className="text-xs text-[var(--text-muted)] leading-relaxed">
-              Tailored for luxury goods, designer ateliers, and bespoke creators. No generic theme sluggishness.
-            </p>
-          </div>
-        );
-
-      case 'mobile-app':
-        return (
-          <div className="rounded-[16px] bg-[var(--ink)] text-[var(--ivory)] p-6 border border-[var(--border-dark)] relative overflow-hidden">
-            <div className="flex items-center justify-between text-xs text-[var(--brand-soft)] border-b border-[var(--border-dark)] pb-3 mb-4">
-              <span className="font-mono text-[11px]">CROSS-PLATFORM NATIVE BUILD</span>
-              <span className="px-2 py-0.5 rounded bg-[var(--surface-dark)] border border-[var(--border-dark)]">iOS & Android</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-28 rounded-[12px] bg-[var(--surface-dark)] border border-[var(--border-dark)] p-2 flex flex-col justify-between flex-shrink-0">
-                <div className="w-4 h-1 rounded-full bg-[var(--border-dark)] mx-auto" />
-                <div className="space-y-1">
-                  <div className="w-full h-1.5 rounded bg-[var(--brand)]/60" />
-                  <div className="w-3/4 h-1.5 rounded bg-[var(--border-dark)]" />
-                </div>
-                <div className="w-3 h-3 rounded-full bg-[var(--brand)] mx-auto" />
-              </div>
-              <div className="space-y-1.5 text-xs">
-                <span className="font-bold text-[var(--ivory)] block">Unified Backend & Biometric Auth</span>
-                <p className="text-[11px] text-[var(--text-muted-dark)] leading-relaxed">
-                  Single React Native / Expo codebase compiling to signed iOS archive and Android APK, ready for store compliance.
-                </p>
-              </div>
-            </div>
-          </div>
-        );
-
-      case 'automation':
-        return (
-          <div className="rounded-[16px] bg-[var(--surface-dark)] text-[var(--ivory)] p-6 border border-[var(--border-dark)] relative overflow-hidden font-mono text-xs">
-            <div className="flex items-center justify-between text-[var(--brand-soft)] border-b border-[var(--border-dark)] pb-3 mb-3">
-              <span>ORCHESTRATION PIPELINE</span>
-              <span className="text-emerald-400">0 Dropped Events</span>
-            </div>
-            <div className="space-y-2 text-[11px]">
-              <div className="p-2.5 rounded bg-[var(--ink)] border border-[var(--border-dark)] flex items-center justify-between">
-                <span className="text-[var(--text-muted-dark)]">Webhook Ingestion</span>
-                <span className="text-[var(--brand-soft)]">Verified HMAC</span>
-              </div>
-              <div className="p-2.5 rounded bg-[var(--ink)] border border-[var(--border-dark)] flex items-center justify-between">
-                <span className="text-[var(--text-muted-dark)]">Retry & DLQ Policy</span>
-                <span className="text-emerald-400">Exponential Backoff</span>
-              </div>
-              <div className="p-2.5 rounded bg-[var(--ink)] border border-[var(--border-dark)] flex items-center justify-between">
-                <span className="text-[var(--text-muted-dark)]">CRM & Billing Sync</span>
-                <span className="text-[var(--ivory)]">Synchronized</span>
               </div>
             </div>
           </div>
@@ -256,7 +318,7 @@ export default function ProductSelector({ services }: ProductSelectorProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
           {/* Left: Strong Vertical Service List */}
-          <div className="lg:col-span-5 flex flex-col gap-2" role="tablist" aria-label="Available services">
+          <div className="lg:col-span-5 flex flex-col gap-2 max-h-[700px] overflow-y-auto pr-2" role="tablist" aria-label="Available services">
             {services.map((service, index) => {
               const isSelected = service.slug === selectedSlug;
               return (
@@ -388,7 +450,7 @@ export default function ProductSelector({ services }: ProductSelectorProps) {
                       Scope-qualified starting range
                     </span>
                     <span className="text-2xl font-heading font-extrabold text-[var(--brand)] tabular-nums">
-                      {activeService.formatted_price || (activeService.currency === 'INR' ? `₹${(activeService.starting_price_minor / 100).toLocaleString()}+` : `$${(activeService.starting_price_minor / 100).toLocaleString()} USD`)}
+                      {activeService.formatted_price || (activeService.starting_price_minor > 0 ? `₹${(activeService.starting_price_minor / 100).toLocaleString('en-IN')}+` : 'Custom Quote')}
                       <span className="text-xs font-normal text-[var(--text-muted)] ml-1.5">
                         (Fixed upon proposal approval)
                       </span>

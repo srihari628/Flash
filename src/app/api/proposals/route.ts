@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
       revisions_allowed = 2,
       start_date,
       delivery_target_date,
-      currency = 'USD',
+      currency = 'INR',
       total_amount_minor = 0,
       payment_schedule_type = 'milestone_split',
       milestone_breakdown = [],

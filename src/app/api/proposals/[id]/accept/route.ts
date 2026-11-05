@@ -87,10 +87,10 @@ export async function POST(req: NextRequest, { params }: RouteContext) {
         project_id: project.id,
         proposal_id: proposalId,
         invoice_number: invoiceNumber,
-        currency: proposal.currency || 'USD',
+        currency: proposal.currency || 'INR',
         amount_minor: firstMilestoneAmount,
         status: 'issued',
-        provider: 'stripe_test',
+        provider: 'razorpay',
       });
 
       // Audit event

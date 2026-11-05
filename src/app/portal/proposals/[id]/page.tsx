@@ -71,13 +71,13 @@ export default function ClientProposalViewPage() {
               'Third-party cloud infrastructure subscription fees (billed directly to client)',
               'Unscoped custom machine learning model training',
             ],
-            currency: 'USD',
-            total_amount_minor: 480000,
+            currency: 'INR',
+            total_amount_minor: 3000000,
             payment_schedule_type: 'milestone_split',
             milestone_breakdown: [
-              { name: 'Sprint Kickoff & Architecture (40%)', percentage: 40, amount_minor: 192000 },
-              { name: 'Sprint Review & Interactive Staging (30%)', percentage: 30, amount_minor: 144000 },
-              { name: 'Production Handover & Warranty Sign-Off (30%)', percentage: 30, amount_minor: 144000 },
+              { name: 'Sprint Kickoff & Architecture (40%)', percentage: 40, amount_minor: 1200000 },
+              { name: 'Sprint Review & Interactive Staging (30%)', percentage: 30, amount_minor: 900000 },
+              { name: 'Production Handover & Warranty Sign-Off (30%)', percentage: 30, amount_minor: 900000 },
             ],
             revisions_allowed: 2,
             support_terms: '14 days post-launch priority bug warranty included.',
@@ -179,7 +179,7 @@ export default function ClientProposalViewPage() {
                   Fixed Investment
                 </span>
                 <span className="text-3xl font-heading font-extrabold text-[var(--brand)] tabular-nums">
-                  ${(proposal.total_amount_minor / 100).toLocaleString()} USD
+                  ₹{(proposal.total_amount_minor / 100).toLocaleString('en-IN')}
                 </span>
               </div>
             </div>
@@ -244,7 +244,7 @@ export default function ClientProposalViewPage() {
                       <span className="text-[11px] text-[var(--text-muted)] font-mono">{ms.percentage}% of total</span>
                     </div>
                     <span className="font-mono font-bold text-[var(--brand)] tabular-nums">
-                      ${(ms.amount_minor / 100).toLocaleString()} USD
+                      ₹{(ms.amount_minor / 100).toLocaleString('en-IN')}
                     </span>
                   </div>
                 ))}

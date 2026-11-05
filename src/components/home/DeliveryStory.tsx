@@ -45,7 +45,7 @@ export default function DeliveryStory() {
         <div className="rounded-[18px] bg-[var(--surface)] border border-[var(--border-light)] p-5 shadow-sm space-y-3">
           <div className="flex items-center justify-between text-xs border-b border-[var(--border-light)] pb-2.5">
             <span className="font-bold text-[var(--ink)]">Proposal v1.0 • Bound Scope</span>
-            <span className="font-extrabold text-[var(--brand)] font-heading text-sm">$3,800 USD</span>
+            <span className="font-extrabold text-[var(--brand)] font-heading text-sm">₹30,000</span>
           </div>
           <div className="space-y-1.5 text-xs text-[var(--text-muted)]">
             <div className="flex items-center gap-2 text-[var(--ink)]">
@@ -58,7 +58,7 @@ export default function DeliveryStory() {
             </div>
             <div className="flex items-center gap-2 text-[var(--ink)]">
               <Check className="w-3.5 h-3.5 text-[var(--brand)] flex-shrink-0" />
-              <span>Deliverable 3: Stripe Checkout Integration</span>
+              <span>Deliverable 3: Payment Gateway Integration (Razorpay / UPI)</span>
             </div>
           </div>
           <div className="w-full py-2 text-center rounded-[8px] bg-[var(--brand)] text-[var(--ivory)] font-bold text-xs shadow-sm">

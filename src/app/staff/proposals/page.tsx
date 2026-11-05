@@ -14,7 +14,7 @@ import {
   AlertCircle,
   Plus,
   Trash2,
-  DollarSign,
+  IndianRupee,
   Calendar,
 } from 'lucide-react';
 
@@ -33,7 +33,7 @@ function ProposalBuilderForm() {
   const [deliverables, setDeliverables] = useState<string[]>([
     'Tailored Next.js frontend with locked design tokens',
     'Supabase Postgres schema, migrations & strict RLS policies',
-    'Stripe / Payment integration & webhooks',
+    'Payment gateway integration (Razorpay / UPI) & webhooks',
     'Full repository IP transfer & 14-day warranty',
   ]);
   const [newDeliverable, setNewDeliverable] = useState('');
@@ -42,7 +42,7 @@ function ProposalBuilderForm() {
     'Unscoped custom machine learning model training',
   ]);
   const [newExclusion, setNewExclusion] = useState('');
-  const [totalAmountUSD, setTotalAmountUSD] = useState<number>(3600);
+  const [totalAmountINR, setTotalAmountINR] = useState<number>(25000);
   const [paymentScheduleType, setPaymentScheduleType] = useState<'milestone_split' | 'advance_full' | 'discovery_first'>('milestone_split');
   const [targetDays, setTargetDays] = useState<number>(7);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -117,12 +117,12 @@ function ProposalBuilderForm() {
       const milestoneBreakdown =
         paymentScheduleType === 'milestone_split'
           ? [
-              { name: 'Sprint Kickoff & Architecture (40%)', percentage: 40, amount_minor: Math.round(totalAmountUSD * 40) },
-              { name: 'Sprint Review & Interactive Staging (30%)', percentage: 30, amount_minor: Math.round(totalAmountUSD * 30) },
-              { name: 'Production Handover & Warranty Sign-Off (30%)', percentage: 30, amount_minor: Math.round(totalAmountUSD * 30) },
+              { name: 'Sprint Kickoff & Architecture (40%)', percentage: 40, amount_minor: Math.round(totalAmountINR * 40) },
+              { name: 'Sprint Review & Interactive Staging (30%)', percentage: 30, amount_minor: Math.round(totalAmountINR * 30) },
+              { name: 'Production Handover & Warranty Sign-Off (30%)', percentage: 30, amount_minor: Math.round(totalAmountINR * 30) },
             ]
           : [
-              { name: 'Complete Sprint Advance (100%)', percentage: 100, amount_minor: totalAmountUSD * 100 },
+              { name: 'Complete Sprint Advance (100%)', percentage: 100, amount_minor: totalAmountINR * 100 },
             ];
 
       const res = await fetch('/api/proposals', {
@@ -137,8 +137,8 @@ function ProposalBuilderForm() {
           revisions_allowed: 2,
           start_date: new Date().toISOString().split('T')[0],
           delivery_target_date: new Date(Date.now() + targetDays * 24 * 3600 * 1000).toISOString().split('T')[0],
-          currency: 'USD',
-          total_amount_minor: Math.round(totalAmountUSD * 100),
+          currency: 'INR',
+          total_amount_minor: Math.round(totalAmountINR * 100),
           payment_schedule_type: paymentScheduleType,
           milestone_breakdown: milestoneBreakdown,
           support_terms: '14 days post-launch priority bug warranty included.',
@@ -284,15 +284,15 @@ function ProposalBuilderForm() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[var(--border-dark)]">
               <div>
                 <label className="block text-xs font-mono uppercase text-[var(--text-muted-dark)] mb-1">
-                  Fixed Total (USD) *
+                  Fixed Total (₹ INR) *
                 </label>
                 <input
                   type="number"
-                  min={100}
-                  step={50}
+                  min={1000}
+                  step={500}
                   required
-                  value={totalAmountUSD}
-                  onChange={(e) => setTotalAmountUSD(Number(e.target.value))}
+                  value={totalAmountINR}
+                  onChange={(e) => setTotalAmountINR(Number(e.target.value))}
                   className="w-full p-3 rounded-[10px] bg-[var(--surface-dark)] border border-[var(--border-dark)] text-sm font-bold text-[var(--brand-soft)] font-mono"
                 />
               </div>

@@ -84,19 +84,17 @@ const defaultPortfolio: PortfolioItem[] = [
 ];
 
 export default async function HomePage() {
-  let services = defaultServices;
+  const services = defaultServices;
   let portfolioItems = defaultPortfolio;
 
   try {
     const supabase = await createClient();
-    const [servicesRes, portfolioRes] = await Promise.all([
-      supabase.from('services').select('*').eq('is_published', true).order('sort_order', { ascending: true }),
-      supabase.from('portfolio_items').select('*').eq('is_published', true).order('sort_order', { ascending: true }),
-    ]);
+    const portfolioRes = await supabase
+      .from('portfolio_items')
+      .select('*')
+      .eq('is_published', true)
+      .order('sort_order', { ascending: true });
 
-    if (servicesRes.data && servicesRes.data.length > 0) {
-      services = servicesRes.data as Service[];
-    }
     if (portfolioRes.data && portfolioRes.data.length > 0) {
       portfolioItems = portfolioRes.data as PortfolioItem[];
     }
