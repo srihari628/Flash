@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
     // Generate unique opaque reference code and secure claim token
     const briefId = crypto.randomUUID();
     const randomSuffix = crypto.randomBytes(4).toString('hex').toUpperCase();
-    const reference_code = `BDO-${new Date().getFullYear().toString().slice(-2)}${randomSuffix}`;
+    const reference_code = `AWK-${new Date().getFullYear().toString().slice(-2)}${randomSuffix}`;
     const claim_token = crypto.randomBytes(24).toString('hex');
 
     const supabase = await createClient();

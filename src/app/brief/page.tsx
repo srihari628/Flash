@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import { ALL_SERVICES, resolveServiceSlug } from '@/lib/servicesData';
 import {
   ArrowRight,
   ArrowLeft,
@@ -44,41 +45,24 @@ interface BriefDraft {
 const STORAGE_KEY = 'awyk_brief_draft_v1';
 
 const servicesList = [
-  // Website Development
-  { slug: 'static-website', name: 'Static Website (₹5,000+)', typical: '~2-3 days' },
-  { slug: 'cms-website', name: 'Dynamic / CMS Website (₹10,000+)', typical: '~3-5 days' },
-  { slug: 'custom-business-website', name: 'Custom Business Website (₹18,000+)', typical: '~5-7 days' },
-  { slug: 'premium-3d-website', name: 'Premium 3D / Animated Website (₹30,000+)', typical: '~7-10 days' },
-  { slug: 'ecommerce-website', name: 'Standard E-commerce Website (₹20,000+)', typical: '~5-7 days' },
-  
-  // Mobile Application Development
-  { slug: 'mobile-mvp', name: 'Standard MVP Mobile App (₹20,000+)', typical: '~7-10 days' },
-  { slug: 'business-app', name: 'Business App (₹30,000+)', typical: '~10-14 days' },
-  { slug: 'business-pro-app', name: 'Business Pro App (₹45,000+)', typical: '~14-21 days' },
-  
-  // AI & Automation
-  { slug: 'whatsapp-automation', name: 'Basic WhatsApp Automation (₹5,000+)', typical: '~2-3 days' },
-  { slug: 'ai-whatsapp-assistant', name: 'AI WhatsApp Assistant (₹10,000+)', typical: '~3-5 days' },
-  { slug: 'whatsapp-ecommerce', name: 'E-commerce to WhatsApp Ordering (₹12,000+)', typical: '~4-6 days' },
-  { slug: 'ai-chatbot', name: 'AI Chatbot (₹8,000+)', typical: '~3-5 days' },
-  { slug: 'custom-ai-agent', name: 'Custom AI Agent (₹20,000+)', typical: '~7-10 days' },
-  { slug: 'custom-llm', name: 'Custom LLM Integration (₹30,000+)', typical: '~7-12 days' },
-  
-  // Academic & Research
-  { slug: 'fullstack-prototype', name: 'Full-Stack Prototype (₹8,000+)', typical: '~4-7 days' },
-  { slug: 'ml-prototype', name: 'Machine Learning Prototype (₹12,000+)', typical: '~5-8 days' },
-  { slug: 'deep-learning-prototype', name: 'Deep Learning Prototype (₹18,000+)', typical: '~7-12 days' },
-  { slug: 'advanced-ai-research', name: 'Advanced AI Research Prototype (₹25,000+)', typical: '~10-15 days' },
-  
-  // Additional Services
-  { slug: 'deployment-hosting', name: 'Website / App Deployment & Hosting (Custom Quote)', typical: '~1-3 days' },
-  { slug: 'seo-api-backend', name: 'SEO / API / Backend / Maintenance (Custom Quote)', typical: 'Custom' },
+  ...ALL_SERVICES.map((s) => ({
+    slug: s.slug,
+    name: `${s.name} (${s.formatted_price || 'Custom Quote'})`,
+    typical: s.formatted_price === 'Custom Quote' ? 'Custom' : `~${s.typical_days} days`,
+  })),
   { slug: 'not_sure', name: 'Not sure yet / Advise me based on scope', typical: 'Flexible' },
 ];
 
 function BriefForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const paramService = searchParams.get('service');
+  const paramMode = searchParams.get('mode');
+
+  const initialServiceSlug =
+    paramService === 'not_sure'
+      ? 'not_sure'
+      : resolveServiceSlug(paramService);
 
   const [step, setStep] = useState<number>(1);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -87,7 +71,7 @@ function BriefForm() {
 
   // Form State
   const [formData, setFormData] = useState<BriefDraft>({
-    service_slug: searchParams.get('service') || 'web-app',
+    service_slug: initialServiceSlug,
     intake_method: 'type',
     idea_description: '',
     shared_link: '',
@@ -95,8 +79,8 @@ function BriefForm() {
     core_features: [],
     budget_range: 'not_sure',
     target_launch_date: 'flexible',
-    work_mode: searchParams.get('mode') === 'discuss' ? 'discuss' : 'writing',
-    appointment_timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
+    work_mode: paramMode === 'discuss' ? 'discuss' : 'writing',
+    appointment_timezone: 'UTC',
     appointment_windows: [{ day: 'Weekday mornings', time: '09:00 - 12:00' }],
     guest_name: '',
     guest_email: '',
@@ -108,18 +92,37 @@ function BriefForm() {
   const [featureInput, setFeatureInput] = useState('');
   const [attachedFiles, setAttachedFiles] = useState<Array<{ name: string; size: number }>>([]);
 
-  // Load recoverable draft from localStorage
+  // Load recoverable draft from localStorage while keeping explicit URL query selections
   useEffect(() => {
+    const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
-        setFormData((prev) => ({ ...prev, ...parsed }));
+        setFormData((prev) => ({
+          ...prev,
+          ...parsed,
+          appointment_timezone:
+            parsed.appointment_timezone && parsed.appointment_timezone !== 'UTC'
+              ? parsed.appointment_timezone
+              : browserTimezone,
+          service_slug: paramService
+            ? initialServiceSlug
+            : parsed.service_slug === 'not_sure'
+            ? 'not_sure'
+            : resolveServiceSlug(parsed.service_slug),
+          work_mode:
+            paramMode === 'discuss' || paramMode === 'writing'
+              ? paramMode
+              : parsed.work_mode || prev.work_mode,
+        }));
+      } else {
+        setFormData((prev) => ({ ...prev, appointment_timezone: browserTimezone }));
       }
     } catch {
-      // Ignore localStorage errors
+      setFormData((prev) => ({ ...prev, appointment_timezone: browserTimezone }));
     }
-  }, []);
+  }, [paramService, paramMode, initialServiceSlug]);
 
   // Auto-save draft changes to localStorage
   useEffect(() => {
@@ -209,9 +212,20 @@ function BriefForm() {
 
     try {
       const selectedService = servicesList.find((s) => s.slug === formData.service_slug);
-      const compositeDescription = formData.shared_link
-        ? `${formData.idea_description}\n\nReference Link: ${formData.shared_link}`
-        : formData.idea_description;
+      const descriptionParts: string[] = [];
+      if (formData.idea_description.trim()) {
+        descriptionParts.push(formData.idea_description.trim());
+      }
+      if (formData.shared_link.trim()) {
+        descriptionParts.push(`Reference Link: ${formData.shared_link.trim()}`);
+      }
+      if (attachedFiles.length > 0) {
+        const filesSummary = attachedFiles
+          .map((f) => `${f.name} (${Math.max(1, Math.round(f.size / 1024))} KB)`)
+          .join(', ');
+        descriptionParts.push(`Attached Files Listed: ${filesSummary}`);
+      }
+      const compositeDescription = descriptionParts.join('\n\n');
 
       const response = await fetch('/api/brief', {
         method: 'POST',
@@ -530,7 +544,7 @@ function BriefForm() {
                           handleAddFeature();
                         }
                       }}
-                      placeholder="e.g. Stripe recurring billing, Google login, CSV export..."
+                      placeholder="e.g. Razorpay / UPI checkout, Google login, CSV export..."
                       className="flex-1 p-3.5 rounded-[14px] bg-[var(--ivory)] border border-[var(--border-light)] text-sm focus:border-[var(--brand)] text-[var(--ink)]"
                     />
                     <button

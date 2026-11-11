@@ -101,6 +101,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/about" className="hover:text-[var(--brand-soft)] transition-colors">
+                  About & Founders
+                </Link>
+              </li>
+              <li>
                 <Link href="/how-it-works" className="hover:text-[var(--brand-soft)] transition-colors">
                   Delivery Method
                 </Link>

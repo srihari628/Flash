@@ -9,7 +9,7 @@ import { CheckCircle2, Clock, ArrowRight, ShieldCheck, Copy, Check, User } from 
 
 function ConfirmationContent() {
   const searchParams = useSearchParams();
-  const code = searchParams.get('code') || 'BDO-26A9F8';
+  const code = searchParams.get('code') || 'AWK-26A9F8';
   const dueParam = searchParams.get('due');
 
   const [copied, setCopied] = useState(false);

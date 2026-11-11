@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { createClient } from '@/lib/supabase/client';
+import { isStaffEmail } from '@/lib/staffConfig';
 import { ArrowRight, Lock, Mail, User, AlertCircle, CheckCircle2 } from 'lucide-react';
 
 export default function SignupPage() {
@@ -59,7 +60,7 @@ export default function SignupPage() {
       }
 
       const normalizedEmail = email.trim().toLowerCase();
-      const isAdmin = ['skchanu007@gmail.com', 'skchan007@gmail.com'].includes(normalizedEmail);
+      const isAdmin = isStaffEmail(normalizedEmail);
 
       // Create or update profile record
       if (data.user) {

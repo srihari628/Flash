@@ -12,7 +12,7 @@ export type ChangeRequestStatus = 'requested' | 'estimated' | 'accepted' | 'decl
 export type InvoiceStatus = 'draft' | 'issued' | 'paid' | 'void';
 export type TicketPriority = 'low' | 'medium' | 'high' | 'urgent';
 export type TicketStatus = 'open' | 'in_progress' | 'resolved' | 'closed';
-export type ProvenanceType = 'client_work' | 'team_project' | 'concept';
+export type ProvenanceType = 'ongoing' | 'client_work' | 'team_project' | 'concept';
 
 export interface Profile {
   id: string;

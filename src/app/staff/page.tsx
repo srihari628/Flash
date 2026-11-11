@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
+import { isStaffOrAdminUser } from '@/lib/staffConfig';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,9 +20,7 @@ export default async function StaffIndexPage() {
     .eq('id', user.id)
     .single();
 
-  const isStaffOrAdmin =
-    (profile && ['admin', 'staff', 'developer', 'reviewer'].includes(profile.role)) ||
-    ['skchanu007@gmail.com', 'skchan007@gmail.com'].includes(user.email || '');
+  const isStaffOrAdmin = isStaffOrAdminUser(profile?.role, user.email);
 
   if (!isStaffOrAdmin) {
     redirect('/portal');

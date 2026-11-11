@@ -10,10 +10,28 @@ interface ProductSelectorProps {
 }
 
 export default function ProductSelector({ services }: ProductSelectorProps) {
+  const categories = ['All', ...Array.from(new Set(services.map((s) => s.category)))];
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const filteredServices =
+    selectedCategory === 'All'
+      ? services
+      : services.filter((s) => s.category === selectedCategory);
+
   const [selectedSlug, setSelectedSlug] = useState<string>(services[0]?.slug || 'static-website');
 
-  const activeService = services.find((s) => s.slug === selectedSlug) || services[0];
-  const activeIndex = services.findIndex((s) => s.slug === selectedSlug);
+  const activeService =
+    filteredServices.find((s) => s.slug === selectedSlug) ||
+    filteredServices[0] ||
+    services[0];
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    const nextList =
+      category === 'All' ? services : services.filter((s) => s.category === category);
+    if (nextList.length > 0 && !nextList.some((s) => s.slug === selectedSlug)) {
+      setSelectedSlug(nextList[0].slug);
+    }
+  };
 
   // Custom visual stage render per service category
   const renderVisualStage = (service: Service) => {
@@ -124,10 +142,13 @@ export default function ProductSelector({ services }: ProductSelectorProps) {
           </div>
         );
 
+      case 'standard-mvp':
       case 'mobile-mvp':
       case 'business-app':
+      case 'business-pro':
       case 'business-pro-app':
       case 'mobile-app':
+      case 'app-deployment':
         return (
           <div className="rounded-[16px] bg-[var(--ink)] text-[var(--ivory)] p-6 border border-[var(--border-dark)] relative overflow-hidden">
             <div className="flex items-center justify-between text-xs text-[var(--brand-soft)] border-b border-[var(--border-dark)] pb-3 mb-4">
@@ -233,6 +254,11 @@ export default function ProductSelector({ services }: ProductSelectorProps) {
           </div>
         );
 
+      case 'hosting-setup':
+      case 'seo-setup':
+      case 'api-integration':
+      case 'backend-development':
+      case 'maintenance-support':
       case 'deployment-bugfix':
         return (
           <div className="rounded-[16px] bg-[var(--ink)] text-[var(--ivory)] p-6 border border-[var(--border-dark)] relative font-mono text-xs">
@@ -278,7 +304,7 @@ export default function ProductSelector({ services }: ProductSelectorProps) {
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-10">
           <span className="text-xs uppercase tracking-widest font-semibold text-[var(--brand)] mb-3 block">
             Capabilities & Deliverables
           </span>
@@ -291,10 +317,31 @@ export default function ProductSelector({ services }: ProductSelectorProps) {
           </p>
         </div>
 
+        {/* Category Filter Tabs */}
+        <div className="flex flex-wrap items-center gap-2 mb-8">
+          {categories.map((cat) => {
+            const isCatSelected = selectedCategory === cat;
+            return (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => handleCategoryChange(cat)}
+                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all border ${
+                  isCatSelected
+                    ? 'bg-[var(--ink)] text-[var(--ivory)] border-[var(--ink)] shadow-2xs'
+                    : 'bg-[var(--surface)] text-[var(--text-muted)] border-[var(--border-light)] hover:border-[var(--brand)] hover:text-[var(--ink)]'
+                }`}
+              >
+                {cat}
+              </button>
+            );
+          })}
+        </div>
+
         {/* Mobile Horizontal Selector */}
         <div className="lg:hidden flex overflow-x-auto pb-4 mb-6 gap-2 no-scrollbar" role="tablist">
-          {services.map((service, idx) => {
-            const isSelected = service.slug === selectedSlug;
+          {filteredServices.map((service, idx) => {
+            const isSelected = service.slug === activeService?.slug;
             return (
               <button
                 key={service.slug}
@@ -308,7 +355,7 @@ export default function ProductSelector({ services }: ProductSelectorProps) {
                     : 'bg-[var(--surface)] text-[var(--ink)] border-[var(--border-light)]'
                 }`}
               >
-                0{idx + 1}. {service.name}
+                {String(idx + 1).padStart(2, '0')}. {service.name}
               </button>
             );
           })}
@@ -318,9 +365,9 @@ export default function ProductSelector({ services }: ProductSelectorProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
           {/* Left: Strong Vertical Service List */}
-          <div className="lg:col-span-5 flex flex-col gap-2 max-h-[700px] overflow-y-auto pr-2" role="tablist" aria-label="Available services">
-            {services.map((service, index) => {
-              const isSelected = service.slug === selectedSlug;
+          <div className="lg:col-span-5 flex flex-col gap-2 max-h-[640px] overflow-y-auto pr-2" role="tablist" aria-label="Available services">
+            {filteredServices.map((service, index) => {
+              const isSelected = service.slug === activeService?.slug;
               return (
                 <button
                   key={service.slug}
@@ -329,19 +376,19 @@ export default function ProductSelector({ services }: ProductSelectorProps) {
                   aria-selected={isSelected}
                   onClick={() => setSelectedSlug(service.slug)}
                   onFocus={() => setSelectedSlug(service.slug)}
-                  className={`text-left p-4 sm:p-5 rounded-[18px] transition-all duration-200 flex items-center justify-between border ${
+                  className={`text-left p-4 rounded-[16px] transition-all duration-200 flex items-center justify-between border ${
                     isSelected
                       ? 'bg-[var(--surface)] border-[var(--brand)] shadow-[var(--shadow-card)] ring-1 ring-[var(--brand)]/10'
                       : 'bg-transparent border-transparent hover:bg-[var(--surface)]/70 text-[var(--text-muted)] hover:text-[var(--ink)]'
                   }`}
                 >
-                  <div className="pr-4">
+                  <div className="pr-4 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className={`text-xs font-mono font-bold ${isSelected ? 'text-[var(--brand)]' : 'text-[var(--text-muted)]'}`}>
-                        0{index + 1}
+                      <span className={`text-xs font-mono font-bold shrink-0 ${isSelected ? 'text-[var(--brand)]' : 'text-[var(--text-muted)]'}`}>
+                        {String(index + 1).padStart(2, '0')}
                       </span>
                       <h3
-                        className={`text-base sm:text-lg font-heading font-bold ${
+                        className={`text-base font-heading font-bold truncate ${
                           isSelected ? 'text-[var(--ink)]' : 'text-inherit'
                         }`}
                       >
@@ -355,7 +402,7 @@ export default function ProductSelector({ services }: ProductSelectorProps) {
 
                   <div className="flex items-center gap-2 flex-shrink-0">
                     <span className="text-xs font-mono px-2 py-0.5 rounded bg-[var(--surface)] border border-[var(--border-light)] text-[var(--text-muted)] hidden sm:inline-block">
-                      ~{service.typical_days}d
+                      {service.formatted_price || `₹${(service.starting_price_minor / 100).toLocaleString('en-IN')}+`}
                     </span>
                     <ChevronRight
                       className={`w-4 h-4 transition-transform ${

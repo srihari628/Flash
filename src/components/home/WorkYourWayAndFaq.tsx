@@ -142,7 +142,7 @@ export default function WorkYourWayAndFaq() {
               </span>
               <h4 className="text-xl font-heading font-extrabold mb-2">Direct Cloud Ownership</h4>
               <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
-                You subscribe directly to services like Supabase, Vercel, or Stripe. We never charge monthly hosting markups or hold credentials hostage.
+                You subscribe directly to services like Supabase, Vercel, or Razorpay / Stripe. We never charge monthly hosting markups or hold credentials hostage.
               </p>
             </div>
             <div>

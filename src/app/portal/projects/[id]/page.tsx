@@ -70,7 +70,7 @@ export default function ProjectWorkspacePage() {
             status: 'in_progress',
             start_date: '2026-10-18',
             target_delivery_date: '2026-10-28',
-            scope_summary: 'Bespoke web application with customer portal, Supabase database, and Stripe checkout.',
+            scope_summary: 'Bespoke web application with customer portal, Supabase database, and Razorpay / Stripe checkout.',
             preview_url: 'https://staging.awyk.design/aura-demo',
             handover_checklist: [
               { title: 'Full GitHub Repository Transfer', done: true, notes: 'Transferred to client organization' },

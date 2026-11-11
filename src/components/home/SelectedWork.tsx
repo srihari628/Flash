@@ -3,18 +3,20 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Sparkles, ShieldCheck, Terminal, Layers } from 'lucide-react';
+import { ArrowRight, Terminal } from 'lucide-react';
 import { PortfolioItem } from '@/lib/types';
+import ProvenanceBadge from '@/components/work/ProvenanceBadge';
 
 interface SelectedWorkProps {
   items: PortfolioItem[];
 }
 
 export default function SelectedWork({ items }: SelectedWorkProps) {
-  // Map images by slug
   const getImage = (slug: string, fallback?: string | null) => {
     if (fallback) return fallback;
     switch (slug) {
+      case 'vyomi-fitness':
+        return '/images/showcase-vyomi.png';
       case 'aura-workspace':
         return '/images/showcase-aura.jpg';
       case 'vespera-atelier':
@@ -28,16 +30,20 @@ export default function SelectedWork({ items }: SelectedWorkProps) {
     }
   };
 
-  const featured = items.find((i) => i.slug === 'aura-workspace') || items[0];
-  const pairItems = items.filter((i) => i.slug === 'vespera-atelier' || i.slug === 'komorebi-sanctuary');
-  const technicalItem = items.find((i) => i.slug === 'synapse-pipeline') || items[3];
+  const featured = items.find((i) => i.slug === 'vyomi-fitness') || items[0];
+  const technicalItem = items.find((i) => i.slug === 'synapse-pipeline');
+  const gridItems = items.filter(
+    (i) => i.slug !== featured?.slug && i.slug !== technicalItem?.slug
+  );
 
   return (
-    <section id="work" className="py-24 sm:py-36 bg-[var(--surface-dark)] text-[var(--ivory)] border-y border-[var(--border-dark)] scroll-mt-24">
+    <section
+      id="work"
+      className="py-20 sm:py-28 bg-[var(--surface-dark)] text-[var(--ivory)] border-y border-[var(--border-dark)] scroll-mt-24"
+    >
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-8">
           <div className="max-w-2xl">
             <span className="text-xs uppercase tracking-widest font-semibold text-[var(--brand-soft)] mb-3 block">
               Portfolio & Architecture Exhibition
@@ -49,22 +55,21 @@ export default function SelectedWork({ items }: SelectedWorkProps) {
           </div>
           <div className="max-w-md">
             <p className="text-[var(--text-muted-dark)] text-sm sm:text-base leading-relaxed mb-3">
-              We showcase actual software architecture, responsive prototypes, and clearly labelled concepts. In accordance with client confidentiality, public entries never expose private client databases.
+              We showcase ongoing client builds, interactive software architecture, and clearly labelled studio concepts. In accordance with client confidentiality, private customer databases are never exposed.
             </p>
             <div className="inline-flex items-center gap-2 text-xs text-[var(--brand-soft)] font-mono">
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--brand)]" />
-              <span>Strict provenance: All fictional entries labelled Concept Preview</span>
+              <span>Honest provenance: Live ongoing builds & labelled Concept Previews</span>
             </div>
           </div>
         </div>
 
-        {/* 1. Full-Width Featured Project: Aura Editorial Workspace */}
+        {/* 1. Full-Width Featured Project (Vyomi Ongoing Work) */}
         {featured && (
-          <div className="mb-14">
+          <div className="mb-12">
             <div className="group rounded-[26px] bg-[var(--ink)] border border-[var(--border-dark)] overflow-hidden hover:border-[var(--brand)] transition-all duration-300 shadow-[var(--shadow-dark-card)]">
-              
               {/* Media Preview Container */}
-              <div className="relative aspect-[21/9] sm:aspect-[2/1] w-full bg-[var(--ink)] overflow-hidden">
+              <div className="relative aspect-[21/9] sm:aspect-[2.2/1] w-full bg-[var(--ink)] overflow-hidden">
                 <Image
                   src={getImage(featured.slug, featured.image_url)}
                   alt={featured.title}
@@ -72,28 +77,36 @@ export default function SelectedWork({ items }: SelectedWorkProps) {
                   sizes="100vw"
                   className="object-cover object-center group-hover:scale-[1.015] transition-transform duration-700 ease-out"
                 />
-                
+
                 {/* Subtle vignette gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)] via-transparent to-transparent opacity-80" />
-                
+
                 {/* Provenance Badge */}
-                <div className="absolute top-5 left-5 sm:top-6 sm:left-6 z-10">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[var(--surface-dark)]/90 backdrop-blur-md text-[var(--brand-soft)] border border-[var(--border-dark)]">
-                    <Sparkles className="w-3.5 h-3.5 text-[var(--brand)]" />
-                    <span>Concept preview</span>
-                  </span>
+                <div className="absolute top-5 left-5 sm:top-6 sm:left-6 z-10 flex items-center gap-2">
+                  <ProvenanceBadge provenance={featured.provenance} />
+                  {featured.preview_ui_data?.status && (
+                    <span className="hidden sm:inline-flex items-center px-3 py-1 rounded-full text-xs font-mono bg-[var(--ink)]/85 backdrop-blur-md text-[var(--text-muted-dark)] border border-[var(--border-dark)]">
+                      {featured.preview_ui_data.status}
+                    </span>
+                  )}
                 </div>
               </div>
 
               {/* Editorial Description & Action */}
-              <div className="p-6 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6 border-t border-[var(--border-dark)]">
+              <div className="p-6 sm:p-9 flex flex-col md:flex-row md:items-center justify-between gap-6 border-t border-[var(--border-dark)]">
                 <div className="max-w-3xl">
-                  <div className="flex items-center gap-3 mb-2">
+                  <div className="flex flex-wrap items-center gap-3 mb-2">
                     <span className="text-xs font-mono uppercase tracking-wider text-[var(--brand-soft)]">
                       {featured.category}
                     </span>
-                    <span className="text-xs text-[var(--text-muted-dark)]">•</span>
-                    <span className="text-xs text-[var(--text-muted-dark)] font-mono">Next.js + Postgres</span>
+                    {featured.preview_ui_data?.stack && (
+                      <>
+                        <span className="text-xs text-[var(--text-muted-dark)]">•</span>
+                        <span className="text-xs text-[var(--text-muted-dark)] font-mono">
+                          {(featured.preview_ui_data.stack as string[]).slice(0, 3).join(' + ')}
+                        </span>
+                      </>
+                    )}
                   </div>
                   <h3 className="text-2xl sm:text-4xl font-heading font-extrabold text-[var(--ivory)] mb-2 group-hover:text-[var(--brand-soft)] transition-colors">
                     {featured.title}
@@ -113,17 +126,20 @@ export default function SelectedWork({ items }: SelectedWorkProps) {
                   </Link>
                 </div>
               </div>
-
             </div>
           </div>
         )}
 
-        {/* 2. Complementary Pair: Vespera Atelier & Komorebi Sanctuary */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mb-14">
-          {pairItems.map((item) => (
+        {/* 2. Curated Grid: Aura, Vespera & Komorebi */}
+        <div
+          className={`grid grid-cols-1 md:grid-cols-2 ${
+            gridItems.length >= 3 ? 'lg:grid-cols-3' : ''
+          } gap-7 lg:gap-8 mb-12`}
+        >
+          {gridItems.map((item) => (
             <div
               key={item.slug}
-              className="group rounded-[24px] bg-[var(--ink)] border border-[var(--border-dark)] overflow-hidden hover:border-[var(--brand)] transition-all duration-300 flex flex-col justify-between shadow-[var(--shadow-dark-card)]"
+              className="group rounded-[22px] bg-[var(--ink)] border border-[var(--border-dark)] overflow-hidden hover:border-[var(--brand)] transition-all duration-300 flex flex-col justify-between shadow-[var(--shadow-dark-card)]"
             >
               <div>
                 {/* Media Container */}
@@ -132,36 +148,33 @@ export default function SelectedWork({ items }: SelectedWorkProps) {
                     src={getImage(item.slug, item.image_url)}
                     alt={item.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-700 ease-out"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)]/90 via-transparent to-transparent" />
-                  
+
                   {/* Provenance Badge */}
                   <div className="absolute top-4 left-4 z-10">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[var(--surface-dark)]/90 backdrop-blur-md text-[var(--brand-soft)] border border-[var(--border-dark)]">
-                      <Sparkles className="w-3.5 h-3.5 text-[var(--brand)]" />
-                      <span>Concept preview</span>
-                    </span>
+                    <ProvenanceBadge provenance={item.provenance} />
                   </div>
                 </div>
 
                 {/* Details */}
-                <div className="p-6 sm:p-8">
-                  <span className="text-xs font-mono uppercase tracking-wider text-[var(--brand-soft)] block mb-2">
+                <div className="p-6">
+                  <span className="text-xs font-mono uppercase tracking-wider text-[var(--brand-soft)] block mb-1.5">
                     {item.category}
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-heading font-extrabold text-[var(--ivory)] mb-3 group-hover:text-[var(--brand-soft)] transition-colors">
+                  <h3 className="text-xl font-heading font-extrabold text-[var(--ivory)] mb-2.5 group-hover:text-[var(--brand-soft)] transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[var(--text-muted-dark)] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[var(--text-muted-dark)] leading-relaxed line-clamp-3">
                     {item.summary}
                   </p>
                 </div>
               </div>
 
               {/* Action */}
-              <div className="px-6 pb-6 sm:px-8 sm:pb-8 pt-2">
+              <div className="px-6 pb-6 pt-2">
                 <Link
                   href={`/work/${item.slug}`}
                   className="inline-flex items-center justify-between w-full p-3.5 rounded-[12px] bg-[var(--surface-dark)] border border-[var(--border-dark)] text-xs font-bold text-[var(--ivory)] hover:border-[var(--brand)] hover:text-[var(--brand-soft)] transition-colors"
@@ -178,7 +191,6 @@ export default function SelectedWork({ items }: SelectedWorkProps) {
         {technicalItem && (
           <div className="rounded-[24px] bg-[var(--ink)] border border-[var(--border-dark)] overflow-hidden hover:border-[var(--brand)] transition-all duration-300 shadow-[var(--shadow-dark-card)]">
             <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
-              
               {/* Media */}
               <div className="lg:col-span-7 relative aspect-[16/9] w-full bg-[var(--surface-dark)] overflow-hidden">
                 <Image
@@ -189,15 +201,12 @@ export default function SelectedWork({ items }: SelectedWorkProps) {
                   className="object-cover object-center"
                 />
                 <div className="absolute top-4 left-4 z-10">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[var(--surface-dark)]/90 backdrop-blur-md text-[var(--brand-soft)] border border-[var(--border-dark)]">
-                    <Sparkles className="w-3.5 h-3.5 text-[var(--brand)]" />
-                    <span>Concept preview</span>
-                  </span>
+                  <ProvenanceBadge provenance={technicalItem.provenance} />
                 </div>
               </div>
 
               {/* Text */}
-              <div className="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between">
+              <div className="lg:col-span-5 p-6 sm:p-9 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-2 mb-2 text-xs font-mono text-[var(--brand-soft)]">
                     <Terminal className="w-3.5 h-3.5 text-[var(--brand)]" />
@@ -206,10 +215,10 @@ export default function SelectedWork({ items }: SelectedWorkProps) {
                   <h3 className="text-2xl sm:text-3xl font-heading font-extrabold text-[var(--ivory)] mb-3">
                     {technicalItem.title}
                   </h3>
-                  <p className="text-sm text-[var(--text-muted-dark)] leading-relaxed mb-6">
+                  <p className="text-sm text-[var(--text-muted-dark)] leading-relaxed mb-5">
                     {technicalItem.summary}
                   </p>
-                  <div className="space-y-2 mb-8 text-xs font-mono text-[var(--text-muted-dark)]">
+                  <div className="space-y-2 mb-7 text-xs font-mono text-[var(--text-muted-dark)]">
                     <div className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                       <span>Zero packet loss under 14.8k EPS load</span>
@@ -229,13 +238,12 @@ export default function SelectedWork({ items }: SelectedWorkProps) {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
-
             </div>
           </div>
         )}
 
         {/* Catalogue Footer */}
-        <div className="mt-16 text-center">
+        <div className="mt-14 text-center">
           <Link
             href="/work"
             className="inline-flex items-center gap-2 px-7 py-4 rounded-[14px] border border-[var(--border-dark)] bg-[var(--ink)] text-[var(--ivory)] text-sm font-bold hover:border-[var(--brand-soft)] hover:bg-[var(--surface-dark)] transition-all"
@@ -244,7 +252,6 @@ export default function SelectedWork({ items }: SelectedWorkProps) {
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
-
       </div>
     </section>
   );
