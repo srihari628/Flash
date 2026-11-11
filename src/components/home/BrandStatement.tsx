@@ -32,10 +32,10 @@ export default function BrandStatement() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/how-it-works"
+              href="/about"
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-[14px] bg-[var(--surface)] text-[var(--ink)] border border-[var(--border-light)] text-sm font-semibold hover:border-[var(--brand)] transition-colors"
             >
-              <span>See our delivery method</span>
+              <span>Meet our founders</span>
             </Link>
           </div>
 

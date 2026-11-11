@@ -63,7 +63,7 @@ export default function ClientProposalViewPage() {
             deliverables: [
               'Next.js 16 App Router frontend with locked design tokens',
               'Supabase Postgres schema, migrations & strict RLS policies',
-              'Stripe checkout session & webhook event processing',
+              'Payment gateway checkout (Razorpay / Stripe) & webhook event processing',
               'Responsive customer portal & staff triage views',
               'Production handover checklist & 14-day warranty',
             ],

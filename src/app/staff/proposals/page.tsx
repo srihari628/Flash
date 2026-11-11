@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { createClient } from '@/lib/supabase/client';
+import { isStaffOrAdminUser } from '@/lib/staffConfig';
 import {
   ArrowLeft,
   ArrowRight,
@@ -62,9 +63,7 @@ function ProposalBuilderForm() {
         .eq('id', user.id)
         .single();
 
-      const isStaffOrAdmin =
-        (profile && ['admin', 'staff', 'developer', 'reviewer'].includes(profile.role)) ||
-        ['skchanu007@gmail.com', 'skchan007@gmail.com'].includes(user.email || '');
+      const isStaffOrAdmin = isStaffOrAdminUser(profile?.role, user.email);
 
       if (!isStaffOrAdmin) {
         router.push('/portal');

@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { createClient } from '@/lib/supabase/client';
+import { isStaffEmail, isStaffOrAdminUser } from '@/lib/staffConfig';
 import { ArrowRight, Lock, Mail, AlertCircle, ShieldCheck } from 'lucide-react';
 
 export default function LoginPage() {
@@ -32,9 +33,7 @@ export default function LoginPage() {
       if (signInError) throw signInError;
 
       const normalizedEmail = email.trim().toLowerCase();
-      const isAdminEmail = ['skchanu007@gmail.com', 'skchan007@gmail.com'].includes(normalizedEmail);
-
-      let isStaffOrAdmin = isAdminEmail;
+      let isStaffOrAdmin = isStaffEmail(normalizedEmail);
       try {
         const { data: profile } = await supabase
           .from('profiles')
@@ -42,7 +41,7 @@ export default function LoginPage() {
           .eq('id', data.user.id)
           .single();
 
-        if (profile && ['staff', 'developer', 'reviewer', 'admin'].includes(profile.role)) {
+        if (isStaffOrAdminUser(profile?.role, normalizedEmail)) {
           isStaffOrAdmin = true;
         }
       } catch (e) {

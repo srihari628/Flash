@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import { AlertCircle, ShieldCheck } from 'lucide-react';
 
 export const metadata = {
   title: 'Terms of Service & Agency Model — Awyk Digital',
@@ -16,15 +15,6 @@ export default function TermsPage() {
 
       <main className="flex-grow pt-32 pb-24">
         <div className="max-w-4xl mx-auto px-6 sm:px-8">
-          
-          {/* Staging Governance Banner */}
-          <div className="mb-10 p-4 rounded-[14px] bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-            <div>
-              <span className="font-bold uppercase tracking-wider block">Staging Operational Notice</span>
-              <span>This policy document reflects our active service commitments. Formal commercial terms are established per engagement through your accepted written proposal.</span>
-            </div>
-          </div>
 
           <div className="mb-12">
             <span className="text-xs uppercase tracking-widest font-semibold text-[var(--brand)] mb-2 block">

@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { createClient } from '@/lib/supabase/server';
+import { isStaffOrAdminUser } from '@/lib/staffConfig';
 import { ShieldCheck, Clock, Settings, History, CheckCircle2 } from 'lucide-react';
 
 export const metadata = {
@@ -27,9 +28,7 @@ export default async function StaffSettingsPage() {
     .eq('id', user.id)
     .single();
 
-  const isStaffOrAdmin =
-    (profile && ['admin', 'staff', 'developer', 'reviewer'].includes(profile.role)) ||
-    ['skchanu007@gmail.com', 'skchan007@gmail.com'].includes(user.email || '');
+  const isStaffOrAdmin = isStaffOrAdminUser(profile?.role, user.email);
 
   if (!isStaffOrAdmin) {
     redirect('/portal');

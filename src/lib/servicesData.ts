@@ -506,24 +506,35 @@ export const ALL_SERVICES: Service[] = [
   },
 ];
 
+const LEGACY_SERVICE_ALIASES: Record<string, string> = {
+  'portfolio': 'static-website',
+  'business-website': 'custom-business-website',
+  'web-app': 'cms-website',
+  'ecommerce': 'ecommerce-website',
+  'mobile-app': 'business-app',
+  'mobile-mvp': 'standard-mvp',
+  'business-pro-app': 'business-pro',
+  'automation': 'whatsapp-automation',
+  'deployment-bugfix': 'hosting-setup',
+  'deployment-hosting': 'hosting-setup',
+  'seo-api-backend': 'seo-setup',
+  'custom-mvp': 'fullstack-prototype',
+};
+
+/** Resolves either a canonical or legacy service slug to a valid canonical slug. */
+export function resolveServiceSlug(slug?: string | null): string {
+  if (!slug) return ALL_SERVICES[0].slug;
+  const exact = ALL_SERVICES.find((s) => s.slug === slug);
+  if (exact) return exact.slug;
+  return LEGACY_SERVICE_ALIASES[slug] || ALL_SERVICES[0].slug;
+}
+
 // Helper to look up service with backward compatibility for legacy slugs
 export function getServiceBySlug(slug: string): Service | undefined {
   const exact = ALL_SERVICES.find((s) => s.slug === slug);
   if (exact) return exact;
 
-  // Legacy alias map
-  const aliases: Record<string, string> = {
-    'portfolio': 'static-website',
-    'business-website': 'custom-business-website',
-    'web-app': 'cms-website',
-    'ecommerce': 'ecommerce-website',
-    'mobile-app': 'business-app',
-    'automation': 'whatsapp-automation',
-    'deployment-bugfix': 'hosting-setup',
-    'custom-mvp': 'fullstack-prototype',
-  };
-
-  const targetSlug = aliases[slug];
+  const targetSlug = LEGACY_SERVICE_ALIASES[slug];
   if (targetSlug) {
     return ALL_SERVICES.find((s) => s.slug === targetSlug);
   }

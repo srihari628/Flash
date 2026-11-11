@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Menu, X, ArrowRight, User, ShieldCheck, Sparkles } from 'lucide-react';
 import SignOutButton from '@/components/auth/SignOutButton';
 import { createClient } from '@/lib/supabase/client';
+import { isStaffEmail, isStaffOrAdminUser } from '@/lib/staffConfig';
 
 interface NavbarProps {
   theme?: 'light' | 'dark';
@@ -55,14 +56,7 @@ export default function Navbar({ theme = 'light' }: NavbarProps) {
 
         setIsLoggedIn(true);
 
-        const staffEmails = [
-          'skchanu007@gmail.com',
-          'skchan007@gmail.com',
-          'srihari628@gmail.com',
-          'sriharicherukumalli1@gmail.com',
-          'sriharibaby2004@gmail.com',
-        ];
-        if (user.email && staffEmails.includes(user.email.toLowerCase())) {
+        if (isStaffEmail(user.email)) {
           setIsStaffUser(true);
           return;
         }
@@ -73,10 +67,7 @@ export default function Navbar({ theme = 'light' }: NavbarProps) {
           .eq('id', user.id)
           .single();
 
-        const isStaffOrAdmin =
-          profile && ['admin', 'staff', 'developer', 'reviewer'].includes(profile.role);
-
-        setIsStaffUser(!!isStaffOrAdmin);
+        setIsStaffUser(isStaffOrAdminUser(profile?.role, user.email));
       } catch {
         setIsStaffUser(false);
       }
@@ -89,14 +80,7 @@ export default function Navbar({ theme = 'light' }: NavbarProps) {
     } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.user) {
         setIsLoggedIn(true);
-        const staffEmails = [
-          'skchanu007@gmail.com',
-          'skchan007@gmail.com',
-          'srihari628@gmail.com',
-          'sriharicherukumalli1@gmail.com',
-          'sriharibaby2004@gmail.com',
-        ];
-        if (session.user.email && staffEmails.includes(session.user.email.toLowerCase())) {
+        if (isStaffEmail(session.user.email)) {
           setIsStaffUser(true);
         } else {
           checkAuth();

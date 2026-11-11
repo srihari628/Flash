@@ -1,27 +1,38 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import { ArrowRight, Sparkles, ShieldCheck, Layers, Terminal } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import { PortfolioItem } from '@/lib/types';
+import { PORTFOLIO_ITEMS, mergePortfolioItems } from '@/lib/portfolioData';
+import ProvenanceBadge from '@/components/work/ProvenanceBadge';
 
 export const metadata = {
-  title: 'Selected Work & Concepts — Awyk Digital',
-  description: 'Explore verified architecture specifications, interactive prototypes, and engineering concepts crafted with restraint and high performance.',
+  title: 'Selected Work & Ongoing Builds — Awyk Digital',
+  description: 'Explore active ongoing builds, verified architecture specifications, and engineering concepts crafted with restraint and high performance.',
 };
 
 export const dynamic = 'force-dynamic';
 
 export default async function WorkPage() {
-  const supabase = await createClient();
-  const { data: portfolio } = await supabase
-    .from('portfolio_items')
-    .select('*')
-    .eq('is_published', true)
-    .order('sort_order', { ascending: true });
+  let items: PortfolioItem[] = PORTFOLIO_ITEMS;
 
-  const items: PortfolioItem[] = (portfolio as PortfolioItem[]) || [];
+  try {
+    const supabase = await createClient();
+    const { data: portfolio } = await supabase
+      .from('portfolio_items')
+      .select('*')
+      .eq('is_published', true)
+      .order('sort_order', { ascending: true });
+
+    if (portfolio && portfolio.length > 0) {
+      items = mergePortfolioItems(portfolio as PortfolioItem[]);
+    }
+  } catch {
+    // Fallback to canonical items
+  }
 
   return (
     <div className="min-h-screen bg-[var(--surface-dark)] text-[var(--ivory)] flex flex-col">
@@ -51,27 +62,24 @@ export default async function WorkPage() {
                 className="rounded-[22px] bg-[var(--ink)] border border-[var(--border-dark)] p-8 flex flex-col justify-between hover:border-[var(--brand)] transition-all duration-300"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-3 mb-6">
+                  {item.image_url && (
+                    <div className="relative aspect-[16/9] w-full rounded-[14px] overflow-hidden mb-6 bg-[var(--surface-dark)] border border-[var(--border-dark)]">
+                      <Image
+                        src={item.image_url}
+                        alt={item.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover object-center"
+                      />
+                    </div>
+                  )}
+
+                  <div className="flex items-center justify-between gap-3 mb-4">
                     <span className="text-xs font-semibold uppercase tracking-wider text-[var(--brand-soft)]">
                       {item.category}
                     </span>
 
-                    {/* Strict Provenance Badge */}
-                    {item.provenance === 'concept' ? (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[var(--surface-dark)] text-[var(--brand-soft)] border border-[var(--border-dark)]">
-                        <Sparkles className="w-3.5 h-3.5 text-[var(--brand)]" />
-                        <span>Concept preview</span>
-                      </span>
-                    ) : item.provenance === 'team_project' ? (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[var(--surface-dark)] text-[var(--ivory)] border border-[var(--border-dark)]">
-                        <span>Studio build</span>
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[var(--surface-dark)] text-[var(--ivory)] border border-[var(--border-dark)]">
-                        <ShieldCheck className="w-3.5 h-3.5 text-[var(--brand)]" />
-                        <span>Client engagement</span>
-                      </span>
-                    )}
+                    <ProvenanceBadge provenance={item.provenance} surface="surface-dark" />
                   </div>
 
                   <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[var(--ivory)] mb-3">
@@ -83,12 +91,12 @@ export default async function WorkPage() {
 
                   {/* Architecture Box */}
                   <div className="rounded-[16px] bg-[var(--surface-dark)] border border-[var(--border-dark)] p-5 mb-6 text-xs space-y-2">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[var(--text-muted-dark)] font-mono">Role:</span>
+                    <div className="flex items-start gap-2">
+                      <span className="text-[var(--text-muted-dark)] font-mono shrink-0">Role:</span>
                       <span className="text-[var(--ivory)] font-medium">{item.role}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[var(--text-muted-dark)] font-mono">Permitted Evidence:</span>
+                    <div className="flex items-start gap-2">
+                      <span className="text-[var(--text-muted-dark)] font-mono shrink-0">Evidence:</span>
                       <span className="text-[var(--ivory)] font-medium">{item.delivery_evidence}</span>
                     </div>
 
